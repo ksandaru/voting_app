@@ -1,0 +1,168 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap'); */
+
+/* *{
+  margin: 0;
+  padding:  0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  
+} */
+/* 
+.footer_container{
+    margin-top: 10rem;
+  min-height: 100vh;
+  position: relative;
+  background-color: #eee;
+  margin: 0;
+  
+  
+} */
+
+.footer__container{
+  position: relative;
+   bottom: 0; 
+  padding: 1rem;
+  background-color: #272C34;
+}
+
+/* .footer_container{
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color:#272C34;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+} */
+
+.logo{
+  width: 5rem;
+  height: auto;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.logo__name{
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.5rem;
+  margin-bottom: 1rem;
+  color: #eeeeee;
+}
+
+.logo__description{
+  padding-right: 1rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.05rem;
+  color: #eee;
+}
+
+.hr{
+  display: none;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  background-color: #eee;
+  width: 768px;
+}
+
+.col{
+  padding: 1rem;
+  color: #eee ;
+}
+
+.col__title{
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.col__links{
+  color: rgba(238, 238, 238, 0.548);
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.col__links:hover{
+  color: #eee;
+}
+
+.social{
+  width: 100%;
+  color: #eee;
+}
+
+.social__hr{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: #eee;
+}
+
+.social__tags{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.social__tags__color{
+  color: rgba(238, 238, 238, 0.637); 
+}
+
+.social__tags__color:hover{
+  color: #eee;
+}
+
+.social__copyrights{
+  color: #eee;
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.7rem;
+}
+
+@media screen and (max-width: 960px){
+  .hr{
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    background-color: #eee;
+    width: 768px;
+  }
+
+  .center{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .col{
+    padding: 1rem;
+    color: #eee ;
+  }
+
+  .social__tags{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .col{
+    text-align: center;
+    color: #eee ;
+    justify-content: center;
+  }
+
+  /* .footer__container{
+    position: absolute;
+    bottom: 1;
+    margin-bottom: -40rem;
+    padding: 1rem;
+    background-color: #272C34;
+  } */
+}
