@@ -97,7 +97,7 @@ margin-right:24px;
 //this is the back button
 const GoBackButton = withRouter(
   ({ history }) => (
-    <SubButton onClick={history.goBack} >BACK</SubButton>
+    <SubButton onClick={history.goBack} >Admin Home</SubButton>
   )
 );
 
@@ -106,15 +106,16 @@ const Navbar = ({auth: { isAuthenticated, loading }, logout, toggle}) => {
 
     const authLinks = (
         <Fragment>
-             <AppLogo to = '/' src={Logo1} alt="logo" ></AppLogo>
+             <AppLogo to = '/home' src={Logo1} alt="logo" ></AppLogo>
           <MenuBars onClick={toggle} />
           <NavMenu>
+          <GoBackButton/> 
           <NavMenuLinks to='/home' >
             Home
           </NavMenuLinks>
-          <NavMenuLinks to='/dashboard' >
+          {/* <NavMenuLinks to='/dashboard' >
               Dashboard
-            </NavMenuLinks>
+            </NavMenuLinks> */}
             {/* <NavMenuLinks to='/rank1Home' >
               Rank1
             </NavMenuLinks>
@@ -130,7 +131,7 @@ const Navbar = ({auth: { isAuthenticated, loading }, logout, toggle}) => {
             <NavMenuLinks to='/aboutUs' >
               AboutUs
             </NavMenuLinks>
-            <NavMenuLinks to='/notFound' >
+            <NavMenuLinks to='/contactUs' >
               ContactUs
             </NavMenuLinks>
           </NavMenu>
@@ -145,18 +146,14 @@ const Navbar = ({auth: { isAuthenticated, loading }, logout, toggle}) => {
         <Fragment>
           <AppLogo to = '/' src={Logo1} alt="logo" ></AppLogo>
           <MenuBars onClick={toggle} />
-          <NavMenu>
-          {/* <GoBackButton/>  */}
+          <NavMenu>          
             <NavMenuLinks to='/home' >
               Home
-            </NavMenuLinks>
-            <NavMenuLinks to='/dashboard' >
-              Dashboard
             </NavMenuLinks>
             <NavMenuLinks to='/aboutUs' >
               AboutUs
             </NavMenuLinks>
-            <NavMenuLinks to='/notFound' >
+            <NavMenuLinks to='/contactUs' >
               ContactUs
             </NavMenuLinks>
           </NavMenu>

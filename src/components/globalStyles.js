@@ -160,7 +160,6 @@ button {
   align-items:center;
 }
 .fa-i-cursor {
-  color:var(--green);
   font-size:1rem;
   margin-left:0.3rem;
   animation-name:cursor;
@@ -173,7 +172,10 @@ button {
 }
 .anime-text {
   margin-bottom:0.7rem;
+  margin-left:-30px;
   display:flex;
+  font-weight:bolder;
+  color:rgb(120, 240, 240);
   min-height:20px;
   align-items:center;
   //color:white;
@@ -181,14 +183,12 @@ button {
 
 a-link, .a-link{
   text-decoration: none;
-  color:var(--green);
-  color:blue;
+  color:white;
 }
 a-link:hover, .a-link:hover {
   color:yellow;
-  /* text-decoration:underline; */
-  text-decoration-color:var(--green);
-} */
+  text-decoration:underline;
+} 
 
 
 //------------------------------
@@ -218,13 +218,7 @@ a-link:hover, .a-link:hover {
 .hi {
   display:flex;
 }
-.emoji {
-  animation-name:emoji;
-  animation-duration:1s;
-  animation-iteration-count:infinite;
-  animation-direction:alternate;
-  margin:0 0 2px 7px;
-}
+
 .name h2 {
   font-family:'Catamaran', sans-serif;
   font-weight:800;
@@ -239,10 +233,13 @@ p{
   margin-bottom:30px;
   //color:white;
 }
-@keyframes emoji {
-  from {transform:rotate(45deg);}
-  to {transform:rotate(0deg);}
+p1{
+  line-height:30px;
+  font-family:"Work Sans", sans-serif;
+  font-size:1.2rem;
+  margin-left:40px;
 }
+
 //------------------
 //-----------Main content background---------
 .MainContent_background{
@@ -343,6 +340,10 @@ p{
 	}
 }
 //-----------------
+
+//----------------COntact us page start----------
+
+//----------------contact us page END---------------
 /* =========== SCROLL TO TOP BTN START ============= */
 .back-to-top .top {
 	z-index: 999;
@@ -753,7 +754,7 @@ p{
     align-items: center;
     max-width: 1120px;
     width: 90%;
-    margin: 10px 120px;
+    margin: 30px 200px;
   }
   
   .cards__wrapper {
@@ -869,7 +870,7 @@ p{
   }
   //------rank1 home background------
   .Rank1Home_page{
-  background: url('../assets/bak-16.jpg');
+  background: url('../assets/home_1.jpg');
   height: 100vh;
   overflow: hidden;
   background-position: center;
@@ -884,7 +885,7 @@ p{
     } */
   //---------Rank2 home background----------------
   .Rank2Home_page{
-  background: url('../assets/bak-14.jpg');
+  background: url('../assets/home_2.jpg');
   height: 100vh;
   overflow: hidden;
   background-position: center;
@@ -894,7 +895,7 @@ p{
   //--------------------------------------------
   //---------Rank3 home background----------------
   .Rank3Home_page{
-  background: url('../assets/bak-15.jpg');
+  background: url('../assets/home_3.jpg');
   height: 100vh;
   overflow: hidden;
   background-position: center;
@@ -904,7 +905,7 @@ p{
   //--------------------------------------------
   //---------Rank4 home background----------------
   .Rank4Home_page{
-  background: url('../assets/bak-17.jpg');
+  background: url('../assets/home_4.jpg');
   height: 100vh;
   overflow: hidden;
   background-position: center;

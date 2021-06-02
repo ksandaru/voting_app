@@ -16,7 +16,7 @@ import { ThemeProvider, CssBaseline } from '@material-ui/core';
 import theme from './Theme';
 
 const HeroSection = styled.section`
-height : 100vh;
+height : 90vh;
 max-height: 1100px;
 position: relative;
 overflow: hidden;
@@ -168,7 +168,7 @@ const Hero = ({slides}) => {
             const nextSlide =() => {
                 setCurrent(current => (current === length  -1  ?  0 : current +1));
             };
-            timeout.current = setTimeout(nextSlide , 8000);
+            timeout.current = setTimeout(nextSlide , 16000);
 
             return function(){
                 if (timeout.current){
@@ -209,7 +209,7 @@ const Hero = ({slides}) => {
                     <HeroContent>
                     <Fade top>
                         <h1>{slide.title}</h1>
-                        <p>{slide.price}</p>
+                        <p>{slide.subtitle}</p>
                         {/* <SubButton to={slide.path}
                         primary ='true'
                         css={`

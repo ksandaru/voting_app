@@ -74,6 +74,7 @@ import VoteParty from './pages/rank4/voteParty/VoteParty';
 import AddDistricts from './pages/rank1/setting/AddDistricts';
 import PollingCenter from './pages/rank1/pollingCenter/PollingCenter';
 import barChart from './pages/rank1/result/barChart';
+import ContactUs from './components/ContactUs';
 
 
 if (localStorage.token){
@@ -103,14 +104,14 @@ window.addEventListener("storage", () => {
 
 return (
   <Provider store={store}>
-  <Router >
+  <Router>
     <>
     <div >
     <GlobalStyle />
     {/* <Navbar toggle = {toggle} /> */}
       <Alert />
         <Switch>
-          
+          <>
           {/* <Route exact path = "/home" component={Home} /> */}
           {/* <Route exact path = "/" component={Home} /> */}
           <Route path="/login" component={Login} />
@@ -125,12 +126,12 @@ return (
           <DynamicLayout exact path="/" component={Home} layout="MAIN_NAV"/>
           <DynamicLayout exact path="/home" component={Home}/>
           <DynamicLayout exact path="/adminList" component={AdminList} layout="SUB_NAV"/>
-
+          {/* <DynamicLayout exact path= "/contactUs" component={ContactUs} layout="MAIN_NAV"/> */}
 
           <Route path = "/adminList" component={AdminList} />
           <Route path = "/addCandidate" component={AddCandidate} />
           <Route path = "/adminList" component={AdminList} />
-          
+          <Route path = "/myhome" component={NotFound} />
 
 
           <Route path= "/scanner" component={Scanner}/>
@@ -169,6 +170,3 @@ export default App;
 
 
 
-{/* <Route path = "/editPerson/:id" component={EditPerson} /> */}
-{/* <Route path = "/candidateList" component={CandidateList} />
-          <Route path = "/editCandidate/:id" component={EditCandidate} /> */}

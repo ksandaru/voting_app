@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
-import {Link} from "react-router-dom"
+import {NavLink,Link} from "react-router-dom"
 
 
 
 class IconsGrid extends React.Component {
   constructor(props) {
     super(props)
-    this.text = "eSolution • eWorld"
+    this.text = "The effort for a better eSolution • Developing better e-Vote web app"
     this.state = {text:"", index:0}
     //this.state = { color: "#282c34" }//this constructor line to make a different background color for this component
   }
@@ -20,7 +20,7 @@ class IconsGrid extends React.Component {
     clearInterval(this.timerID)
   }
   animateText = () => {
-      if (this.state.index === 23) {
+      if (this.state.index === 67) {
       setTimeout(() => {
 	this.setState({index:0})
       },2000)
@@ -35,7 +35,7 @@ class IconsGrid extends React.Component {
       <div className="banner">
         <Fragment>
         <div className="name">
-    	  <h2>MEET THE FEATURES <br /> eVote</h2>
+    	  <h2>Meet the features of the system <br /> eVote</h2>
         </div>
 
         <div className="anime-text">
@@ -47,7 +47,7 @@ class IconsGrid extends React.Component {
 	  <p data-aos='fade-up'>The web app is developed with React.js and ASP.Net Core for the purpose of a Online voting demonstration in the covid-19 season.</p>
         </div>
         <div className="learn-more" data-aos='fade-up'>
-  	  <p>Learn <Link className="a-link" to="/aboutUs">More about us</Link> or <Link className="a-link" to="/contactUs">Contact Us</Link></p>
+  	  <p1>Learn<Link className="a-link" to="/aboutUs">More about us</Link> or <Link className="a-link" to="/contactUs">Contact Us</Link></p1>
         </div>
         </Fragment>
       </div>

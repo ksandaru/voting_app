@@ -48,23 +48,19 @@ const Login = ({ setAlert, login, isAuthenticated, user }) => {
     //this is the back button
 const GoBackButton = withRouter(
   ({ history }) => (
-    <SubButton onClick={history.goBack} primary='true'>⬅ BACK</SubButton>
+    <SubButton  onClick={history.goBack} primary='true'>⬅ HOME</SubButton>
   )
 );
 
   return (
-    <div className="LoginPage">
-      
+    <div className="LoginPage">  
     <Fragment>
-    
       <section className="login-container">
       <ParticlesEffect />
-
         <h1 className="large text-primary">Sign In</h1>
         <p className="lead">
           <i className="fas fa-user" /> Sign Into Admin Account
         </p>
-
         <form className="form" onSubmit={(e) => onSubmit(e)}>
             <div className="form-group">
               <small className="form-text"> Username</small>
@@ -76,8 +72,6 @@ const GoBackButton = withRouter(
                 onChange={(e) => onChange(e)}
               />
             </div>
-          
-
           <div className="form-group">
             <small className="form-text"> Password</small>
             <input
@@ -90,11 +84,11 @@ const GoBackButton = withRouter(
             />
           </div>
           <input type="submit" className="btn" value="Login" />
-          <GoBackButton/>
+          
         </form>
-       
+        <GoBackButton/>
       </section>
-      
+     
     </Fragment>
     </div>
     

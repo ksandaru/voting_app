@@ -40,7 +40,7 @@ export default class AddPerson extends Component {
             SerialNo:'',
             Voted:'false',
             gndOptions: [],
-            GND: ""
+            GND: "",
         }
     }
 
@@ -98,7 +98,7 @@ export default class AddPerson extends Component {
             Voted: Boolean(this.state.Voted),
             GND: parseInt(this.state.GND)
         };
-        axios.post('http://localhost:5000/api/person/', obj)
+        axios.post('https://localhost:5001/api/person/', obj)
         .then(json => {
             if (json.statusText == 'Created'){
                 debugger;
@@ -133,6 +133,7 @@ export default class AddPerson extends Component {
                                 onChange = {this.onChangeNIC}
                                 style= {styles.textField}
                             />
+                            
                             <TextField
                                 name = "serialNo"
                                 variant = "outlined"
@@ -182,12 +183,6 @@ export default class AddPerson extends Component {
                             Reset
                         </Button>
                     </div>        
-                
-                
-                {/* <input name="name" placeholder="Name" onChange={this.onChangeName} value={this.state.Name} /> <br />
-                <input name="password" placeholder="Password" onChange={this.onChangePassword} value={this.state.Password} /> <br />
-                <input name="rank" placeholder="Rank" onChange={this.onChangeRank} value={this.state.Rank} /> <br />
-                <button type="submit">Submit</button> */}
             </form>
                 </Paper>
             </Container>
