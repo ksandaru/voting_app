@@ -126,7 +126,7 @@ return (
           <DynamicLayout exact path="/" component={Home} layout="MAIN_NAV"/>
           <DynamicLayout exact path="/home" component={Home}/>
           <DynamicLayout exact path="/adminList" component={AdminList} layout="SUB_NAV"/>
-          {/* <DynamicLayout exact path= "/contactUs" component={ContactUs} layout="MAIN_NAV"/> */}
+           <DynamicLayout exact path= "/contactUs" component={ContactUs} layout="MAIN_NAV"/> 
 
           <Route path = "/adminList" component={AdminList} />
           <Route path = "/addCandidate" component={AddCandidate} />
