@@ -84,8 +84,8 @@ if (localStorage.token){
 const App = () => {
       useEffect(() => {
         store.dispatch(loadUser());
-    
-      
+
+
 
 
 //make the admin completely loggedout
@@ -105,68 +105,73 @@ window.addEventListener("storage", () => {
 return (
   <Provider store={store}>
   <Router>
-    <>
+  <>
     <div >
     <GlobalStyle />
     {/* <Navbar toggle = {toggle} /> */}
       <Alert />
         <Switch>
-          <>
+
           {/* <Route exact path = "/home" component={Home} /> */}
           {/* <Route exact path = "/" component={Home} /> */}
           <Route path="/login" component={Login} />
           {/* make private below */}
+
+
+
+
+{/* <DynamicLayout path = "/admin_home/rank1Home" component={Rank1Home} layout="SUB_NAV" /> */}
+
           <DynamicLayout path = "/rank1Home" component={Rank1Home} layout="SUB_NAV" />
           <DynamicLayout path = "/rank2Home" component={Rank2Home} layout="SUB_NAV" />
           <DynamicLayout path = "/rank3Home" component={Rank3Home} layout="SUB_NAV" />
           <DynamicLayout path = "/rank4Home" component={Rank4Home} layout="SUB_NAV" />
-          {/* <Route path = "/aboutUs" component={AboutUs} /> */}
-          
+         
+
+         
+
           <DynamicLayout exact path="/aboutUs" component={AboutUs} layout="MAIN_NAV"/>
           <DynamicLayout exact path="/" component={Home} layout="MAIN_NAV"/>
           <DynamicLayout exact path="/home" component={Home}/>
           <DynamicLayout exact path="/adminList" component={AdminList} layout="SUB_NAV"/>
-          {/* <DynamicLayout exact path= "/contactUs" component={ContactUs} layout="MAIN_NAV"/> */}
+          <DynamicLayout exact path= "/contactUs" component={ContactUs} layout="MAIN_NAV"/>
 
           <Route path = "/adminList" component={AdminList} />
           <Route path = "/addCandidate" component={AddCandidate} />
           <Route path = "/adminList" component={AdminList} />
-          <Route path = "/myhome" component={NotFound} />
+          
 
 
           <Route path= "/scanner" component={Scanner}/>
           <Route path= "/addDistricts" component={AddDistricts}/>
           <Route path= "/polCenter" component={PollingCenter}/>
-          <Route path= "/barChart" component={barChart}/>
+          <DynamicLayout exact path= "/barChart" component={barChart} layout="SUB_NAV"/>
 
 
           <Route path= "/voteParty" component={VoteParty}/>
           <Route path= "/voteCandidate" component={VoteCandidate}/>
 
+          
+          {/* <DynamicLayout path = "/rank1Home" component={Rank1Home} layout="SUB_NAV" /> */}
 
-          <Route path= "/dataEntry" component={DataEntryMenu}/>
+          {/* <Route path= "/dataEntry" component={DataEntryMenu}/> */}
           <Route path = "/databaseView" component={DatabaseView} />
           <Route path = "/homePolling" component={HomePolling} />
           <Route path= "/addPerson" component={AddPerson}/>
           <DynamicLayout exact path= "/addParty" component={AddParty} layout="SUB_NAV"/>
           {/* below 404 should be at the bottom of rote paths */}
           <Route exact path="*" render={() => {window.location.href="404.html"}} />
-        </Switch>    
-    
+        </Switch>
+
     <CssBaseline />
     </div>
     <div>
     {/* <Footer/> */}
     </div>
     <ScrollTop/>
-    </> 
+</>
     </Router>
     </Provider>
   );
 };
 export default App;
-
-
-
-
-
