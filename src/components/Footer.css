@@ -48,6 +48,7 @@
   letter-spacing: 0.5rem;
   margin-bottom: 1rem;
   color: #eeeeee;
+  cursor: context-menu;
 }
 
 .logo__description{
@@ -56,6 +57,7 @@
   line-height: 1.5;
   letter-spacing: 0.05rem;
   color: #eee;
+  cursor: context-menu;
 }
 
 .hr{
@@ -76,6 +78,7 @@
   font-size: 1.2rem;
   font-weight: 300;
   margin-bottom: 1rem;
+  cursor: context-menu;
 }
 
 .col__links{

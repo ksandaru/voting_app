@@ -24,9 +24,15 @@ function Rank2Home() {
                         />
                         <CardItem
                           src='https://icon-library.com/images/data-entry-icon/data-entry-icon-25.jpg'
-                          text='Click to enter the candidate and party details'
-                          label='DATA ENTRY'
-                          path='/dataEntry'
+                          text='Click to enter the party details'
+                          label='PARTY DATA ENTRY'
+                          path='/addParty'
+                        />
+                        <CardItem
+                          src='https://icon-library.com/images/data-entry-icon/data-entry-icon-25.jpg'
+                          text='Click to enter the candidate details'
+                          label='CANDIDATE DATA ENTRY'
+                          path='/addCandidate'
                         />
                          <CardItem
                           src='https://www.quinntessential.com.au/Icon-Reports%203D.png'

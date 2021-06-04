@@ -92,11 +92,13 @@ h1{
     text-shadow: 0px 0px 20px rgba(0,0,0,0.4);
     /* text-align: left; */
     margin-bottom: 0.8rem;
+    cursor:pointer;
     
 }
 p{
     margin-bottom:1.2rem;
     text-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+    cursor:pointer;
 }
 `;
 const Arrow = styled(IoMdArrowRoundForward)`

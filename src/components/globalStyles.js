@@ -153,12 +153,12 @@ button {
 
 
 
-.anime-text {
+/* .anime-text {
   margin-bottom:0.7rem;
   display:flex;
   min-height:20px;
   align-items:center;
-}
+} */
 .fa-i-cursor {
   font-size:1rem;
   margin-left:0.3rem;
@@ -178,12 +178,14 @@ button {
   color:rgb(120, 240, 240);
   min-height:20px;
   align-items:center;
+  cursor: pointer;
   //color:white;
 }
 
 a-link, .a-link{
   text-decoration: none;
   color:white;
+  cursor: pointer;
 }
 a-link:hover, .a-link:hover {
   color:yellow;
@@ -224,13 +226,15 @@ a-link:hover, .a-link:hover {
   font-weight:800;
   line-height:40px;
   margin:30px 0;
-  //color:white;
+  color:white;
+  cursor: pointer;
 }
 p{
   line-height:30px;
   font-family:"Work Sans", sans-serif;
   font-size:1.2rem;
   margin-bottom:30px;
+  cursor: pointer;
   //color:white;
 }
 p1{
@@ -238,6 +242,7 @@ p1{
   font-family:"Work Sans", sans-serif;
   font-size:1.2rem;
   margin-left:40px;
+  cursor: pointer;
 }
 
 //------------------

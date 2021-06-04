@@ -11,6 +11,7 @@ const useStyles = makeStyles(theme => ({
   content: {
     fontSize: '1.2rem',
     textAlign:'justify',
+    cursor:'pointer',
   },
 
   // mainview:{
@@ -37,6 +38,7 @@ const useStyles = makeStyles(theme => ({
     margin: '10px',
     textAlign: 'center',
     zIndex:'-1',
+    cursor:'pointer',
     
      '&:hover': {
        background: '#35A7F8',

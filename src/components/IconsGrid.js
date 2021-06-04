@@ -35,7 +35,7 @@ class IconsGrid extends React.Component {
       <div className="banner">
         <Fragment>
         <div className="name">
-    	  <h2>Meet the features of the system <br /> eVote</h2>
+    	  <h2>Upcoming features of eVote</h2>
         </div>
 
         <div className="anime-text">

@@ -3,7 +3,9 @@ import { Home } from "@material-ui/icons";
 import React, { Component, Fragment } from 'react';
 import CardItem from "./CardItem";
 
-function Rank1Home() {
+
+
+  function Rank1Home() {
     return (
       <div className="Rank1Home_page">
         <Fragment>
@@ -42,4 +44,4 @@ function Rank1Home() {
     )
 }
 
-export default Rank1Home
+export default Rank1Home;

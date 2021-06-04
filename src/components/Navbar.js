@@ -11,7 +11,14 @@ import { connect } from 'react-redux';
 import  {logout}  from '../Actions/auth';
 
 import { withRouter } from 'react-router-dom';
+import jwt_decode from "jwt-decode"
 
+import { AiOutlineLogout } from 'react-icons/ai';
+import { AiOutlineLogin } from 'react-icons/ai';
+import { RiContactsLine } from 'react-icons/ri';
+import { BiWorld } from 'react-icons/bi';
+import { AiOutlineHome } from 'react-icons/ai';
+import { ImUsers } from 'react-icons/im';
 
 
 const Nav = styled.nav`
@@ -45,6 +52,10 @@ const AppLogo = styled.img`
   height: 150px;
   width:200px;
   vertical-align: center;
+  &:hover  {
+    -webkit-transform: translateY(-5px);
+	transform: translateY(-5px);
+}
   `;
   
 
@@ -81,6 +92,10 @@ margin-right:-48px;
 
 const NavMenuLinks = styled(Link)`
 ${NavLink}
+font-size: medium;
+&:hover  {
+  color: yellow;
+}
 `;
 
 const NavBtn = styled.div`
@@ -89,55 +104,59 @@ align-items: center;
 margin-right:24px;
 
 
+
 @media screen and (max-width: 768px){
     display:none;
 }
 `;
 
-//this is the back button
-const GoBackButton = withRouter(
-  ({ history }) => (
-    <SubButton onClick={history.goBack} >Admin Home</SubButton>
-  )
-);
+//this is the authenticated admin home redirection
+
+
 
 
 const Navbar = ({auth: { isAuthenticated, loading }, logout, toggle}) => {
 
+  const [userRole, setuserRole] = useState( localStorage.token ? jwt_decode(localStorage.token).role : 'Guest')
+
+  var path = "/";
+switch (userRole) {
+  case "Rank1Admin":
+    path = "/rank1Home";
+    break;
+  case "Rank2Admin":
+    path = "/rank2Home";
+    break;
+  case "Rank3Admin":
+    path = "/rank3Home";
+    break;
+  case "Rank4Admin":
+    path = "/rank4Home";
+    break;
+  default:
+    break;
+}
     const authLinks = (
         <Fragment>
              <AppLogo to = '/home' src={Logo1} alt="logo" ></AppLogo>
           <MenuBars onClick={toggle} />
           <NavMenu>
-          <GoBackButton/> 
-          <NavMenuLinks to='/home' >
-            Home
+          < NavMenuLinks to={path}>
+            <ImUsers/>
+            <span>Admin Home</span>
           </NavMenuLinks>
-          {/* <NavMenuLinks to='/dashboard' >
-              Dashboard
-            </NavMenuLinks> */}
-            {/* <NavMenuLinks to='/rank1Home' >
-              Rank1
-            </NavMenuLinks>
-            <NavMenuLinks to='/rank2Home' >
-              Rank2
-            </NavMenuLinks>
-            <NavMenuLinks to='/rank3Home'>
-              Rank3
-            </NavMenuLinks>
-            <NavMenuLinks to='/rank4Home' >
-              Rank4
-            </NavMenuLinks> */}
             <NavMenuLinks to='/aboutUs' >
-              AboutUs
+            <BiWorld/>
+            <span>AboutUs</span>
             </NavMenuLinks>
             <NavMenuLinks to='/contactUs' >
-              ContactUs
+            <RiContactsLine/>
+              <span>ContactUs</span>
             </NavMenuLinks>
           </NavMenu>
          
           <NavBtn>
-          <SubButton onClick={logout} to='/login' primary= 'true'  >Logout</SubButton>
+          <SubButton onClick={logout} to='/home' primary= 'true'  ><span>Logout</span><AiOutlineLogout/></SubButton>
           </NavBtn>
         </Fragment>
       )
@@ -148,17 +167,20 @@ const Navbar = ({auth: { isAuthenticated, loading }, logout, toggle}) => {
           <MenuBars onClick={toggle} />
           <NavMenu>          
             <NavMenuLinks to='/home' >
-              Home
+            <AiOutlineHome/>
+              <span>Home</span>
             </NavMenuLinks>
             <NavMenuLinks to='/aboutUs' >
-              AboutUs
+            <BiWorld/>
+            <span>AboutUs</span>
             </NavMenuLinks>
             <NavMenuLinks to='/contactUs' >
-              ContactUs
+            <RiContactsLine/>
+              <span>ContactUs</span>
             </NavMenuLinks>
           </NavMenu>
           <NavBtn>
-          <SubButton to='/login' primary= 'true'  >Login</SubButton>
+          <SubButton to='/login' primary= 'true'  ><AiOutlineLogin/><span>Login</span></SubButton>
           </NavBtn>
         </Fragment>
       );

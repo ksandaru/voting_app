@@ -45,12 +45,9 @@ const Login = ({ setAlert, login, isAuthenticated, user }) => {
         console.log(user.role);
     }
     
-    //this is the back button
-const GoBackButton = withRouter(
-  ({ history }) => (
-    <SubButton  onClick={history.goBack} primary='true'>⬅ HOME</SubButton>
-  )
-);
+  
+
+
 
   return (
     <div className="LoginPage">  
@@ -86,7 +83,7 @@ const GoBackButton = withRouter(
           <input type="submit" className="btn" value="Login" />
           
         </form>
-        <GoBackButton/>
+        <SubButton to='/home' primary= 'true'  >Go Home</SubButton>
       </section>
      
     </Fragment>

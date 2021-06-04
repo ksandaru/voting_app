@@ -28,14 +28,16 @@
     left: 0;
     transition: 350ms;
   }
-  
+
   .sidenav-text {
     display: flex;
+    flex-direction: column;
     justify-content: start;
     align-items: center;
-    padding: 8px 0px 8px 16px;
+    padding: 8px 10px 8px 16px;
     list-style: none;
-    height: 60px;
+    height: 100px;
+    
   }
   
   .sidenav-text a {
@@ -49,6 +51,9 @@
     padding: 0 16px;
     border-radius: 4px;
   }
+  .sidenav-text a :hover {
+   color: greenyellow;
+  }
   
   .sidenav-text a:hover {
     background-color: #1a83ff;
@@ -57,6 +62,7 @@
   .sidenav-menu-items {
     width: 100%;
   }
+  
   
   .sidenavbar-toggle {
     background-color: #060b26;
@@ -74,8 +80,16 @@
   .rightside{
     margin-left: 65%;
   }
+  .rightside :hover{
+    color: gold;
+    
+  }
   .current-user{
     color:rgb(173, 179, 184);
+  }
+  .current-user :hover{
+    color:rgb(178, 236, 85);
+    cursor: pointer;
   }
 
 
