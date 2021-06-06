@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import  {logout}  from '../Actions/auth';
 
 import { withRouter } from 'react-router-dom';
-import jwt_decode from "jwt-decode"
+import jwt_decode from "jwt-decode";
 
 import { AiOutlineLogout } from 'react-icons/ai';
 import { AiOutlineLogin } from 'react-icons/ai';
@@ -93,6 +93,7 @@ margin-right:-48px;
 const NavMenuLinks = styled(Link)`
 ${NavLink}
 font-size: medium;
+
 &:hover  {
   color: yellow;
 }
@@ -141,7 +142,7 @@ switch (userRole) {
              <AppLogo to = '/home' src={Logo1} alt="logo" ></AppLogo>
           <MenuBars onClick={toggle} />
           <NavMenu>
-          < NavMenuLinks to={path}>
+          < NavMenuLinks to={path} >
             <ImUsers/>
             <span>Admin Home</span>
           </NavMenuLinks>
@@ -170,7 +171,7 @@ switch (userRole) {
             <AiOutlineHome/>
               <span>Home</span>
             </NavMenuLinks>
-            <NavMenuLinks to='/aboutUs' >
+            <NavMenuLinks to='/aboutUs'  >
             <BiWorld/>
             <span>AboutUs</span>
             </NavMenuLinks>

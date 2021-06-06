@@ -63,11 +63,11 @@ export default class HeaderBar extends Component {
                     </div>
                     <div>
                         <Progress
-                            percent={(this.props.obj1.partyTotal/this.state.electors)*1}
+                            percent={(this.props.obj1.partyTotal/this.state.electors)*100}
                             status="error"
                             theme={{
                                 error: {
-                                symbol: (this.props.obj1.partyTotal/this.state.electors)*100 + '%',
+                                symbol: ((this.props.obj1.partyTotal/this.state.electors)*100).toFixed(2) + '%',
                                 color: '#fbc630'
                                 }
                             }}
@@ -101,11 +101,11 @@ export default class HeaderBar extends Component {
                     </div>
                     <div>
                         <Progress
-                            percent={(this.props.obj1.partyTotal/this.state.electors)*1}
+                            percent={(this.props.obj1.partyTotal/this.state.electors)*100}
                             status="error"
                             theme={{
                                 error: {
-                                symbol:(this.props.obj1.partyTotal/this.state.electors)*100 + '%',
+                                symbol:((this.props.obj1.partyTotal/this.state.electors)*100).toFixed(2) + '%',
                                 color: '#fbc630'
                                 }
                             }}

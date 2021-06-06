@@ -42,8 +42,62 @@ html,body{
 
 
 
-
-
+//----------- Form Validate Error Message ---------------//
+.validate{
+  font-size: smaller;
+  color: red;
+  font-weight: 100;
+  width: 235px;
+}
+.helpicon{
+  color: grey;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  top: 12px;
+  color: grey;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 150px;
+  font-size: 0.8rem;
+  font-stretch: condensed;
+  background-color: #5db2ea8f;
+  color: #04273d;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+  position: absolute;
+  z-index: 1;
+  left: 90%;
+  /* top: 5%; */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 45%;
+  right: 100%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #5db2ea8f transparent transparent;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+//...................PersonList Search Bar....................//
+.searchBar {
+  margin: 5px;
+}
+.searchButton {
+    padding: 1;
+}
+/*-------------------------------------------------------------*/
 /*-------------------------------------------------------------*/
 /*login page*/
 
@@ -65,13 +119,17 @@ html,body{
 .lead {
   font-size: 1.8rem;
   margin-bottom: 1rem;
+  padding-left: 35rem;
 }
 
 .text-primary {
   color: var(#263238);
+  padding-left: 40rem;
+  
 }
 .p {
   padding: 0.2rem;
+  
 }
 /*alert for login*/ 
 .alert {
@@ -81,7 +139,7 @@ html,body{
   opacity: 0.9;
   background:#FB7179;
   border-radius: 10px;
-  margin-left:40rem;
+  margin-left:42rem;
   color: #333;
   
 }
@@ -91,12 +149,13 @@ html,body{
     background-color: #263238;
     color: white;
     font-size: 20px;
-    padding: 10px 60px;
+    padding: 10px 50px;
     border-radius: 5px;
-    margin: 10px 0px;
+    /* margin: 10px 20px; */
     cursor: pointer;
     /* margin-left: 40rem; */
-    margin-left: 38rem;
+    margin-top: 10px;
+    margin-left: 40rem;
     margin-bottom:10rem;
   };
 .form .form-group {
@@ -285,7 +344,7 @@ p1{
 	margin-bottom: 2rem;
 }
 
-.AUSingleBoxContainer {
+.AboutSingleBoxContainer {
 	border-radius: 6px;
 	background-color: var(--SubThemeC);
 	-webkit-box-shadow: 0 0 1.25rem rgb(108 118 134 / 13%);
@@ -297,7 +356,7 @@ p1{
 	border: 1px solid rgb(240, 240, 240);
 }
 
-.AUSingleBoxContainer::before {
+.AboutSingleBoxContainer::before {
 	position: absolute;
 	content: "";
 	opacity: 0;
@@ -319,19 +378,19 @@ p1{
 	transform: rotate(0deg);
 }
 
-.AUSingleBoxContainer:hover:before {
+.AboutSingleBoxContainer:hover:before {
 	opacity: 1;
 	transform: rotate(15deg);
 }
 
-.AUSingleBoxContainer h1 {
+.AboutSingleBoxContainer h1 {
 	color: var(--SubThemeC2);
 	font-weight: 400;
 	font-size: 4.2rem;
 	margin-bottom: 2rem;
 }
 
-.AUSingleBoxContainer h3 {
+.AboutSingleBoxContainer h3 {
 	font-size: 2.5rem;
 }
 
@@ -927,7 +986,16 @@ p1{
   background-repeat: no-repeat;
   background-size: cover;
   }
-  //--------------------------------------------
+  //-------------Add party background-------------------------------
+  .AddParty_page{
+  background: url('../assets/bak-6.jpg');
+  height: 100vh;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+  //------------------
    //------------Add candidate page background------
    .AddCandidate_page{
   background: url('../assets/bak-11.jpg');
@@ -937,7 +1005,17 @@ p1{
   background-repeat: no-repeat;
   background-size: cover;
   }
-  //--------------------------------------------
+  //------------AdminList and add admin page background------
+  .AdminList_page{
+  background: url('../assets/bak-5.jpg');
+  height: 100vh;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+  //------------------
+  //----------------Add district page bakground----------------------------
   .AddDistrict_page{
   background: url('../assets/bak-22.png');
   height: 100vh;
@@ -945,6 +1023,29 @@ p1{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  }
+  .Setting_page{
+  background: url('../assets/pattern-11.jpg');
+  height: 100vh;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+  .Databaseview_page{
+  background: url('../assets/pattern-12.jpg');
+  height: 100vh;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+  .setting_container{
+    box-shadow:1rem 1rem 1rem 1rem rgb(148 148 34 / 20%);
+  -webkit-box-shadow:1rem 1rem 1rem 1rem rgb(148 148 34 / 10%);
+  background: url('../assets/pattern-5.png');
+  height: 100%;
+ 
   }
   //------------polling center page background------
   .PollingCenter_page{
@@ -1003,13 +1104,14 @@ p1{
   background-repeat: no-repeat;
   background-size: cover;
   } */
-
-  .add_admin_container{
-	-webkit-box-shadow: 2rem 1rem 1.25rem rgb(108 118 134 / 10%);
-	box-shadow: 1rem 1rem 1.5rem rgb(128 148 14 / 90%);
+//------------add admin--------------
+.add_admin_container{
+	box-shadow:1rem 1rem 1rem 1rem rgb(148 148 34 / 20%);
+  -webkit-box-shadow:1rem 1rem 1rem 1rem rgb(148 148 34 / 10%);
+  background: url('../assets/pattern-5.png');
 	padding: 3.5rem 3rem;
   height: 100%;
-  width:100%;
+  width:33rem;
   margin-left: 7rem;
 	/* margin-bottom: 3rem; */
 	position: relative;
@@ -1020,35 +1122,69 @@ p1{
 	border: 2px solid rgb(242, 242, 102);
   }
   .Rank_filter{
+    display: flex;
+    margin-top: 20px;
+    /* margin-left: 112px; */
     margin-left: 112px;
-    margin-top: 4rem;
+    
+    
   }
   .Rank_label{
-    color:yellowgreen;
+    color:white;
     font-size: 10px;
     font-weight: bold;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
   }
-  //--------------Add party page-----------------------------------------
-              /* case 01: add a background color */
-   /* .AddParty_page{
-    height: 100vh;
-    overflow: hidden;
-    background: linear-gradient(90deg, rgb(0, 0, 0) 25%, rgb(38, 218, 218) 60%);
-    margin: 0;
-    } */
-    
-              /* case 02: Add an image background */
-  .AddParty_page{
-  background: url('../assets/bak-6.jpg');
-  height: 100vh;
-  overflow: hidden;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-    }
-  
+  //-----------add person page---------------
+  .add_person_container{
+	box-shadow:1rem 1rem 1rem 1rem rgb(148 148 34 / 20%);
+  -webkit-box-shadow:1rem 1rem 1rem 1rem rgb(148 148 34 / 10%);
+  background: url('../assets/pattern-5.png');
+	padding: 3.5rem 3rem;
+  height: 100%;
+  width:33rem;
+  margin-left: 7rem;
+	/* margin-bottom: 3rem; */
+	position: relative;
+	z-index: 1;
+	-webkit-transition: 0.5s;
+	transition: 0.5s;
+	border-radius: 0.5rem;
+	border: 2px solid rgb(242, 242, 102);
+  }
+  .add_candidate_container{
+	box-shadow:1rem 1rem 1rem 1rem rgb(148 148 34 / 20%);
+  -webkit-box-shadow:1rem 1rem 1rem 1rem rgb(148 148 34 / 10%);
+  background: url('../assets/pattern-10.jpg');
+	padding: 3.5rem 3rem;
+  height: 100%;
+  width:33rem;
+  margin-left: 7rem;
+	/* margin-bottom: 3rem; */
+	position: relative;
+	z-index: 1;
+	-webkit-transition: 0.5s;
+	transition: 0.5s;
+	border-radius: 0.5rem;
+	border: 2px solid rgb(242, 242, 102);
+  }
+  .add_party_container{
+	box-shadow:1rem 1rem 1rem 1rem rgb(148 148 34 / 20%);
+  -webkit-box-shadow:1rem 1rem 1rem 1rem rgb(148 148 34 / 10%);
+  background: url('../assets/pattern-9.jpg');
+	padding: 3.5rem 3rem;
+  height: 100%;
+  width:33rem;
+  margin-left: 7rem;
+	/* margin-bottom: 3rem; */
+	position: relative;
+	z-index: 1;
+	-webkit-transition: 0.5s;
+	transition: 0.5s;
+	border-radius: 0.5rem;
+	border: 2px solid rgb(242, 242, 102);
+  }
 `;
 
 export  default GlobalStyle;

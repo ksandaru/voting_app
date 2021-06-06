@@ -1,6 +1,7 @@
-import { Button, Container, Grid, TextField, MenuItem, Select, InputLabel, FormControl, Paper, InputAdornment } from '@material-ui/core';
+import { Button, Container, Grid, TextField, MenuItem, Select, InputLabel, FormControl, Paper , Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 import axios from 'axios';
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 
 const styles = {
     root: {
@@ -18,10 +19,9 @@ const styles = {
     sMargin:{
         margin: 8,
     },
-    paper : {
-        margin: "30px auto",
-        padding: 20,
-    } 
+    tab : {
+        display: "flex"
+    }
 }
 
 export default class AddDistricts extends Component {
@@ -36,6 +36,7 @@ export default class AddDistricts extends Component {
         this.AddDistrict = this.AddDistrict.bind(this);
         this.AddDivision = this.AddDivision.bind(this);
         this.AddGNDivision = this.AddGNDivision.bind(this);
+        this.closeMessage = this.closeMessage.bind(this);
 
         this.state = {
             district:'',
@@ -43,8 +44,17 @@ export default class AddDistricts extends Component {
             division: '',
             divOptions: [{ value: '', display:'Select Division'}],
             gndivision:'',
+            message: '',
+            setMessage: false,
         }
     } 
+
+    closeMessage(){
+        this.setState({
+            setMessage: false,
+            message: '',
+        });
+    }
 
     componentDidMount(){
         axios.get('https://localhost:5001/api/District/')
@@ -113,11 +123,17 @@ export default class AddDistricts extends Component {
                 this.setState({
                     district: ''
                 });
-                alert("Data Save Successfully");
+                this.setState({
+                    setMessage: true,
+                    message: 'District Save Successfully',
+                });
             }
             else{
                 debugger;
-                alert('Data not Saved');
+                this.setState({
+                    setMessage: true,
+                    message: 'District not Saved',
+                });
             }
         });
         debugger;
@@ -138,11 +154,17 @@ export default class AddDistricts extends Component {
                 this.setState({
                     division: ''
                 });
-                alert("Data Save Successfully");
+                this.setState({
+                    setMessage: true,
+                    message: 'Division Save Successfully',
+                });
             }
             else{
                 debugger;
-                alert('Data not Saved');
+                this.setState({
+                    setMessage: true,
+                    message: 'Division not Saved',
+                });
             }
         });
         debugger;
@@ -163,11 +185,17 @@ export default class AddDistricts extends Component {
                 this.setState({
                     gndivision: ''
                 });
-                alert("Data Save Successfully");
+                this.setState({
+                    setMessage: true,
+                    message: 'GNDivision Save Successfully',
+                });
             }
             else{
                 debugger;
-                alert('Data not Saved');
+                this.setState({
+                    setMessage: true,
+                    message: 'GNDivision not Saved',
+                });
             }
         });
         debugger;
@@ -175,14 +203,16 @@ export default class AddDistricts extends Component {
 
     render() {
         return (
-            <div className="AddDistrict_page">
-                <Fragment>
-            <Container maxWidth="xl">
-                <Paper style={styles.paper} elevation={3}>
-                    <h4>Settings</h4>
+            <Container maxWidth="lg">
+                <Snackbar open={this.state.setMessage} autoHideDuration={3000} onClose={this.closeMessage}>
+                    <Alert severity="success">
+                        {this.state.message}
+                    </Alert>
+                </Snackbar>
                     <form autoComplete="off" noValidate style={styles.root}>
-                        <Grid container>
-                            <Grid item lg={2}>
+                        {this.props.index === 0 ? 
+                        <Grid style={styles.tab}>
+                            <Grid item xs={4}>
                             <h4>Add Districts</h4>
                                 <TextField
                                     name = "districtname"
@@ -203,8 +233,14 @@ export default class AddDistricts extends Component {
                                     </Button>
                                 </div>
                             </Grid>
-
-                            <Grid item lg={2}>
+                            <Grid item xs={8}>
+                                <h4>This is for display and update values</h4>
+                                </Grid>
+                        </Grid> : null}
+                            
+                        {this.props.index === 1 ? 
+                        <Grid style={styles.tab}>
+                            <Grid item xs={4}>
                             <h4>Add Divisions</h4>
                                 <FormControl variant="outlined" style={styles.formControl}>
                                     <InputLabel >District</InputLabel>
@@ -237,7 +273,14 @@ export default class AddDistricts extends Component {
                                     </Button>
                                 </div>
                             </Grid>
-                            <Grid item lg={2}>
+                            <Grid item xs={8}>
+                            <h4>This is for display and update values</h4>
+                            </Grid>
+                        </Grid> : null}
+                        
+                        {this.props.index === 2 ? 
+                        <Grid style={styles.tab}>
+                            <Grid item xs={4}>
                             <h4>Add Grama Niladhari Divisions</h4>
                                 <FormControl variant="outlined" style={styles.formControl}>
                                     <InputLabel >District</InputLabel>
@@ -282,15 +325,12 @@ export default class AddDistricts extends Component {
                                     </Button>
                                 </div>
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item xs={8}>
                             <h4>This is for display and update values</h4>
                             </Grid>
-                        </Grid>
+                        </Grid> : null}
                     </form>
-                </Paper>
             </Container>
-            </Fragment>
-            </div>
         )
     }
 }

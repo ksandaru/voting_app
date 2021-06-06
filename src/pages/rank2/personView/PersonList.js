@@ -1,7 +1,8 @@
-import { Container, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
+import { Container, Grid, IconButton, InputBase, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from '@material-ui/core';
 import axios from 'axios';
 import React, { Component } from 'react'
 import PersonTable from './PersonTable';
+import SearchIcon from '@material-ui/icons/Search';
 
 const styles = {
     root: {
@@ -12,7 +13,7 @@ const styles = {
     paper : {
         margin: "30px auto",
         padding: 20,
-    }
+    },
 }
 
 export default class PersonList extends Component {
@@ -34,6 +35,10 @@ export default class PersonList extends Component {
         })
     }
 
+    serchNIC(e){
+
+    }
+
     tabRow(){
         return this.state.business.map(function (object, i) {
             return <PersonTable obj={object} key={i} /> ;
@@ -43,6 +48,16 @@ export default class PersonList extends Component {
     render() {
         return (
             <Container>
+                <InputBase
+                    className= "searchBar"
+                    placeholder="Search NIC"
+                    // value = {this.state.CandidateNo}
+                    onChange = {this.searchNIC}
+                    style= {styles.textField}
+                />
+                <IconButton className= "searchButton" aria-label="search" onClick={''}>
+                    <SearchIcon />
+                </IconButton>
                 <Paper style={styles.paper} elevation={3} >
                     <Grid container spacing={4}>
                         <Grid item xs= {12}>

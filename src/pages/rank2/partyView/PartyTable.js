@@ -18,12 +18,15 @@ export default function PartyTable(props) {
         };
     
         const DeleteParty = () =>{
-            axios.delete('https://localhost:5001/api/party/'+props.obj.partyID)
+            if(window.confirm('Are you sure to delete this record?'))
+            {
+                axios.delete('https://localhost:5001/api/party/'+props.obj.partyID)
             .then(json => {
-                if(json.statusText=='OK'){
+                if(json.statusText ==='OK'){
                     alert('Record deleted successfully!!');
                 }
             })
+            }
         };
 
     return (
@@ -32,6 +35,9 @@ export default function PartyTable(props) {
                 <TableCell>{props.obj.partyName}</TableCell>
                 <TableCell>{props.obj.color}</TableCell>
                 <TableCell>{props.obj.logo}</TableCell>
+                <TableCell>
+                    <img src={props.obj.logoSrc} />
+                </TableCell>
                 <TableCell>
                     <ButtonGroup variant="text">
                         <Button>

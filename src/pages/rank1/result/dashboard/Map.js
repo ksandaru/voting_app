@@ -1,12 +1,7 @@
 import React, { Component } from 'react'
-
-//import '../Result.css'
-
-import { Container, Paper, Grid, Card, CardHeader, CardContent, Typography, Button, ButtonGroup, TableSortLabel } from '@material-ui/core';
+import { Container, Paper, Grid, Button, ButtonGroup } from '@material-ui/core';
 import { Doughnut } from 'react-chartjs-2';
-
-
-import { Table, TableBody,TableCell, TableContainer, TableRow, TableHead} from '@material-ui/core';
+import { Table, TableBody,TableCell, TableContainer, TableRow } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import ProgressBar from './ProgressBar';
 
@@ -41,35 +36,57 @@ const styles = {
 export default class Map extends Component {
 
     constructor(props){
-        debugger;
         super(props);
 
         this.genPieData = this.genPieData.bind(this);
         this.onMapButton = this.onMapButton.bind(this);
-        // this.layerContent = this.layerContent.bind(this);
+        this.loadData = this.loadData.bind(this);
 
         this.state = {
             DataSet: {},
             buttonDisable: true,
             layer: 'hidden',
             layerContent: '',
-            label: 'Sri Lankan Vote Results',
+            Id: '',
+            label: 'Sri Lanka',
             parties: [],
+            intervalID : 0,
         };
     }
 
     componentDidMount(){
-        // this.genPieData('', 'SriLanka');
-        // debugger;
+        this.intervalID = setInterval(this.loadData,5000);
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.intervalID);
+    }
+
+    loadData(){
+        debugger;
+        let ID = this.state.Id;
+        let Label = this.state.label;
+        debugger;
+        if (Label.includes('District')) {
+            debugger;
+            this.onMapClick(ID, Label);
+        } 
+        if (Label.includes('Division')) {
+            debugger;
+            this.ondivMapClick(ID, Label);
+        }
+        else {
+            this.onMapClick(ID, Label);
+        }
     }
 
     genPieData = (parties, Id, label) => {
         var totalData;
-        if (Id == '') {
+        if (Id === '') {
             totalData = this.props.obj.partyData;
         }
         else{
-            if(parties.length == 0){
+            if(parties.length === 0){
                 totalData = [];
             }
             else{
@@ -85,7 +102,7 @@ export default class Map extends Component {
         totalData.forEach(rec => {
             data.push(rec.partycount);
             backgroundColor.push(rec.color);
-            labels.push(rec.partyName)
+            labels.push(rec.partyName.match(/\b(\w)/g).join(''));
         });
         let Data = {datasets: [
                         {
@@ -104,11 +121,11 @@ export default class Map extends Component {
 
     chartBar(parties, Id){
         var totalData;
-        if (Id == '') {
+        if (Id === '') {
             totalData = this.props.obj.partyData;
         }
         else{
-            if(parties.length == 0){
+            if(parties.length === 0){
                 totalData = [];
             }
             else{
@@ -118,7 +135,7 @@ export default class Map extends Component {
         
         const ptyList = [];
 
-        if (totalData.length != 0) {
+        if (totalData.length !== 0) {
             debugger;
             let ptyVotecount=[];
             let ptyID= [];
@@ -134,7 +151,7 @@ export default class Map extends Component {
             for(let i=0; i< ptyVotecount.length; i++){
                 var numerator = ptyVotecount[i];
         
-                if(numerator==undefined){
+                if(numerator === undefined){
                 ptyPercent.push(0);
                 }
                 else{
@@ -164,7 +181,7 @@ export default class Map extends Component {
             for (let i = 0; i < ptyRec.length; i++) {
                 ptyList.push({
                     ...ptyRec[i],
-                    ...(percnt.find(item => item.ID=== ptyRec[i].partyID))
+                    ...(percnt.find(item => item.ID === ptyRec[i].partyID))
                 })
             }
        }
@@ -175,16 +192,20 @@ export default class Map extends Component {
     }
 
     onMapClick(distID, label){
-        //debugger;
+        debugger;
         const parties = this.props.obj.districtPartyData
-            .filter(item => item.districtID === distID-1)
+            .filter(item => item.districtID === distID)
             .map(ptyItem => ptyItem.Party)
             .reduce((prev, current) => prev.concat(current),[]);
-        //debugger;
+        debugger;
+        this.setState({
+            Id: distID,
+            label: label
+        });
 
         this.genPieData(parties, distID, label);
         this.chartBar(parties, distID);
-        //debugger;
+        debugger;
     }
     ondistMapClick(distID, label){
         //debugger;
@@ -262,23 +283,19 @@ export default class Map extends Component {
         this.setState({layerContent: content});
         
         this.openLayer(distID);
-        const parties = this.props.obj.districtPartyData
-            .filter(item => item.districtID === distID-1)
-            .map(ptyItem => ptyItem.Party)
-            .reduce((prev, current) => prev.concat(current),[]);
-        //debugger;
-
-        this.genPieData(parties, distID, label);
-        this.chartBar(parties, distID);
-        //debugger;
+        this.onMapClick(distID, label);
     }
     ondivMapClick(divID, label){
 
         const parties = this.props.obj.divisionPartyData
-            .filter(item => item.divisionID === divID-1)
+            .filter(item => item.divisionID === divID)
             .map(ptyItem => ptyItem.Party)
             .reduce((prev, current) => prev.concat(current),[]);
         //debugger;
+        this.setState({
+            Id: divID,
+            label: label
+        });
 
         this.genPieData(parties, divID, label);
         this.chartBar(parties, divID);
@@ -632,7 +649,7 @@ export default class Map extends Component {
         </g>
         <path className= 'B' id="path4877" d="M143.641 363.098L143.289 360.283L139.41 352.533L136.539 351.635H136.535L135.359 351.269L132.844 347.476L131.477 346.01L127.926 342.23L125.312 340.915C125.312 340.915 124.082 342.324 122.766 343.915C121.445 345.497 120.035 347.268 119.68 347.966C119.332 348.669 118.098 349.815 116.957 350.781C115.809 351.751 114.758 352.544 114.758 352.544L111.164 353.829L101.016 357.47L98.551 364.165L97.141 367.333L94.324 371.915L98.547 377.199H98.543L96.691 377.976L94.512 381.983L96.355 388.153L95.777 392.872L95.871 393.106L94.375 393.678L94.672 394.459L99.594 395.412L100.664 397.338L100.879 398.193H100.883L102.062 402.867C103.598 403.568 107.238 405.258 108.062 406.082C109.113 407.141 113.691 412.434 113.691 412.434L120.387 413.844C120.387 413.844 127.438 413.844 131.305 414.551C135.176 415.254 139.047 416.664 139.047 416.664C139.047 416.664 139.188 416.879 139.41 417.223L139.504 411.446L139.449 408.926L136.195 405.942L132.91 402.184L131.66 397.301V393.774L137.645 388.145L136.59 384.625L134.129 378.981L132.895 377.939V377.942L131.82 377.039L134.832 375.813L138.348 374.404L142.844 372.789V372.783L147.16 371.235L147.863 369.464L143.641 363.098Z" fill="#EF0F0F" stroke="black" stroke-width="0.5"/>
         </g>
-        <g id="Group_99" onClick={this.onMapClick.bind(this, 9, 'Hambanthota District')}>
+        <g id="Group_99" onClick={this.onMapClick.bind(this, 9, 'Hambantota District')}>
         <g id="Group_100">
         <path id="path4287" d="M159.562 502.281C160.969 502.281 167.074 506.035 167.074 506.035H168.953L169.891 508.859L175.871 508.394L180.223 510.738L170.625 523.226C170.445 523.081 170.363 522.941 170.363 522.941C170.363 522.941 168.48 526.228 166.609 527.164C165.906 527.512 164.434 527.859 162.859 528.156L162.852 528.103L162.379 525.289L158.617 523.406L155.801 521.054C155.801 521.054 156.012 520.906 156.348 520.663C157.363 519.913 159.562 518.231 160.969 516.831C162.852 514.952 160.5 512.601 160.5 512.601L162.379 511.191L159.09 508.375L157.211 505.561C157.207 505.57 158.152 502.281 159.562 502.281Z" fill="#EF0F0F" stroke="black" stroke-width="0.5"/>
         </g>
@@ -704,7 +721,7 @@ export default class Map extends Component {
         </g>
         <path className= 'B' id="path4883" d="M133.777 478.976L136.242 477.214L136.418 476.878L117.797 466.87L114.051 469.464L111.586 471.577L110.883 473.684L108.77 477.918L104.898 475.094L101.012 472.983L98.551 474.401L95.984 475.608H95.98L92.566 477.212L85.516 474.044L82.348 470.868L80.234 467L74.953 465.242L69.066 467.656C69.965 470.426 71.004 473.711 71.449 475.113C71.586 475.543 71.668 475.801 71.668 475.801C71.668 475.801 73.996 485.697 75.445 491.289C75.836 492.801 76.164 493.992 76.363 494.594C77.301 497.408 88.57 510.086 89.98 511.496C90.234 511.75 90.562 512.07 90.918 512.422V512.43C92.527 514.008 94.934 516.285 96.086 516.664C97.496 517.129 100.309 518.535 100.309 518.535C100.309 518.535 99.707 519.449 100.691 520.535C100.922 520.808 101.258 521.078 101.723 521.359C103.512 522.439 114.406 526.271 119.406 528.007L119.68 527.222L122.145 522.296V516.31H124.961C124.961 516.31 125.441 516.228 126.055 515.996C126.738 515.738 127.582 515.289 128.137 514.555C129.191 513.145 124.254 509.617 122.496 506.098C120.738 502.586 122.141 494.508 122.145 494.477L128.047 494.133L128.137 494.121C128.137 494.121 128.832 491.66 128.137 490.605C127.434 489.546 122.496 484.96 121.441 481.792C120.387 478.624 133.77 485.31 133.77 485.31C133.77 485.31 135.176 485.664 135.527 484.609C135.891 483.55 131.312 480.734 133.777 478.976Z" fill="#EF0F0F" stroke="black" stroke-width="0.5"/>
         </g>
-        <g id="Group_123" onClick={this.onMapClick.bind(this, 3, 'Kaluthara District')}>
+        <g id="Group_123" onClick={this.onMapClick.bind(this, 3, 'Kalutara District')}>
         <g id="Group_124">
         <path id="path4759" d="M58.121 428.082C60.25 427.844 62.258 428.332 63.734 428.859L63.766 429.019C63.766 429.019 66.109 435.593 65.637 437.003C65.172 438.417 62.355 439.355 62.355 439.355L62.168 439.425C60.684 435.433 59.059 431.027 58.031 428.12L58.121 428.082Z" fill="#EF0F0F" stroke="black" stroke-width="0.5"/>
         </g>
@@ -1246,7 +1263,7 @@ export default class Map extends Component {
         </g>
         <path className= 'A' id="path4877" d="M143.641 363.098L143.289 360.283L139.41 352.533L136.539 351.635H136.535L135.359 351.269L132.844 347.476L131.477 346.01L127.926 342.23L125.312 340.915C125.312 340.915 124.082 342.324 122.766 343.915C121.445 345.497 120.035 347.268 119.68 347.966C119.332 348.669 118.098 349.815 116.957 350.781C115.809 351.751 114.758 352.544 114.758 352.544L111.164 353.829L101.016 357.47L98.551 364.165L97.141 367.333L94.324 371.915L98.547 377.199H98.543L96.691 377.976L94.512 381.983L96.355 388.153L95.777 392.872L95.871 393.106L94.375 393.678L94.672 394.459L99.594 395.412L100.664 397.338L100.879 398.193H100.883L102.062 402.867C103.598 403.568 107.238 405.258 108.062 406.082C109.113 407.141 113.691 412.434 113.691 412.434L120.387 413.844C120.387 413.844 127.438 413.844 131.305 414.551C135.176 415.254 139.047 416.664 139.047 416.664C139.047 416.664 139.188 416.879 139.41 417.223L139.504 411.446L139.449 408.926L136.195 405.942L132.91 402.184L131.66 397.301V393.774L137.645 388.145L136.59 384.625L134.129 378.981L132.895 377.939V377.942L131.82 377.039L134.832 375.813L138.348 374.404L142.844 372.789V372.783L147.16 371.235L147.863 369.464L143.641 363.098Z" fill="#EF0F0F" stroke="black" stroke-width="0.5"/>
         </g>
-        <g id="Group_99" onClick={this.ondistMapClick.bind(this, 9, 'Hambanthota District')}>
+        <g id="Group_99" onClick={this.ondistMapClick.bind(this, 9, 'Hambantota District')}>
         <g id="Group_100">
         <path id="path4287" d="M159.562 502.281C160.969 502.281 167.074 506.035 167.074 506.035H168.953L169.891 508.859L175.871 508.394L180.223 510.738L170.625 523.226C170.445 523.081 170.363 522.941 170.363 522.941C170.363 522.941 168.48 526.228 166.609 527.164C165.906 527.512 164.434 527.859 162.859 528.156L162.852 528.103L162.379 525.289L158.617 523.406L155.801 521.054C155.801 521.054 156.012 520.906 156.348 520.663C157.363 519.913 159.562 518.231 160.969 516.831C162.852 514.952 160.5 512.601 160.5 512.601L162.379 511.191L159.09 508.375L157.211 505.561C157.207 505.57 158.152 502.281 159.562 502.281Z" fill="#EF0F0F" stroke="black" stroke-width="0.5"/>
         </g>
@@ -1318,7 +1335,7 @@ export default class Map extends Component {
         </g>
         <path className= 'A' id="path4883" d="M133.777 478.976L136.242 477.214L136.418 476.878L117.797 466.87L114.051 469.464L111.586 471.577L110.883 473.684L108.77 477.918L104.898 475.094L101.012 472.983L98.551 474.401L95.984 475.608H95.98L92.566 477.212L85.516 474.044L82.348 470.868L80.234 467L74.953 465.242L69.066 467.656C69.965 470.426 71.004 473.711 71.449 475.113C71.586 475.543 71.668 475.801 71.668 475.801C71.668 475.801 73.996 485.697 75.445 491.289C75.836 492.801 76.164 493.992 76.363 494.594C77.301 497.408 88.57 510.086 89.98 511.496C90.234 511.75 90.562 512.07 90.918 512.422V512.43C92.527 514.008 94.934 516.285 96.086 516.664C97.496 517.129 100.309 518.535 100.309 518.535C100.309 518.535 99.707 519.449 100.691 520.535C100.922 520.808 101.258 521.078 101.723 521.359C103.512 522.439 114.406 526.271 119.406 528.007L119.68 527.222L122.145 522.296V516.31H124.961C124.961 516.31 125.441 516.228 126.055 515.996C126.738 515.738 127.582 515.289 128.137 514.555C129.191 513.145 124.254 509.617 122.496 506.098C120.738 502.586 122.141 494.508 122.145 494.477L128.047 494.133L128.137 494.121C128.137 494.121 128.832 491.66 128.137 490.605C127.434 489.546 122.496 484.96 121.441 481.792C120.387 478.624 133.77 485.31 133.77 485.31C133.77 485.31 135.176 485.664 135.527 484.609C135.891 483.55 131.312 480.734 133.777 478.976Z" fill="#EF0F0F" stroke="black" stroke-width="0.5"/>
         </g>
-        <g id="Group_123" onClick={this.ondistMapClick.bind(this, 3, 'Kaluthara District')}>
+        <g id="Group_123" onClick={this.ondistMapClick.bind(this, 3, 'Kalutara District')}>
         <g id="Group_124">
         <path id="path4759" d="M58.121 428.082C60.25 427.844 62.258 428.332 63.734 428.859L63.766 429.019C63.766 429.019 66.109 435.593 65.637 437.003C65.172 438.417 62.355 439.355 62.355 439.355L62.168 439.425C60.684 435.433 59.059 431.027 58.031 428.12L58.121 428.082Z" fill="#EF0F0F" stroke="black" stroke-width="0.5"/>
         </g>
@@ -1828,18 +1845,12 @@ export default class Map extends Component {
         this.setState({
             buttonDisable: !this.state.buttonDisable,
         })
-        //debugger;
     }
 
     openLayer(distID){
         document.getElementById("layer").style.visibility = "visible";
-        // document.getElementById('dist1').style.animationPlayState = "running";
-        // document.getElementById("dist" + distID).style.animation= "1s 1 forwards disAnime";
-        // document.getElementsByClassName('district').style.display = "none";
     } 
     closeLayer(){
-        // document.getElementById('dist1').style.animation= "1s 1 forwards disAnime";
-        // document.getElementById('dist1').style.animationPlayState = "paused";
         document.getElementById("layer").style.visibility = "hidden";
     }
 
@@ -1871,14 +1882,6 @@ export default class Map extends Component {
                                         Division
                                     </Button>
                                </ButtonGroup>
-                                <Button
-                                    variant = "contained"
-                                    color = "primary"
-                                    onClick= {this.onMapClick.bind(this, '', 'SriLanka')}
-                                    style={{position: 'absolute', left: '542px', top: '160px'}}
-                                >
-                                    All Country
-                                </Button>
                                 {/* <Button
                                     variant = "contained"
                                     color = "primary"
@@ -1908,7 +1911,19 @@ export default class Map extends Component {
                             <Paper elevation={10} className='paper'>
                                 {/* Doughnut */}
                                 <div>
-                                    <h1>{this.state.label}</h1>
+                                    <div style={{display: 'flex'}}>
+                                        <h1>{this.state.label}</h1>
+                                        {this.state.label === 'Sri Lanka' ? null : 
+                                            <Button
+                                                variant = "contained"
+                                                color = "primary"
+                                                onClick= {this.onMapClick.bind(this, '', 'Sri Lanka')}
+                                                style={{position: 'absolute', right: '30px'}}
+                                            >
+                                                All Country
+                                            </Button>
+                                        }
+                                    </div>
                                     <hr className="new1"/>
                                     <div style={{marginBottom: "10px"}}>
                                         <Doughnut data={this.state.DataSet}/>

@@ -1,8 +1,11 @@
-import { Button, Container, Grid, TextField, MenuItem, Select, InputLabel, FormControl, Paper, Dialog, DialogTitle, DialogContent, DialogContentText } from '@material-ui/core';
+import { Button, Container, Grid, TextField } from '@material-ui/core';
 import axios from 'axios';
 import React, { Component } from 'react'
 
-import defaultPartyImg from '../../../images/image_placeholder.png'
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 const styles = {
     root: {
@@ -38,9 +41,8 @@ export default class EditParty extends Component {
 
         this.state = {
             partyName:'',
-            logo: '',
-            // logoSrc: defaultPartyImg,
-            // logoFile: null,
+            logoSrc: '',
+            logoFile: '',
             color:''
         }
     }
@@ -50,7 +52,9 @@ export default class EditParty extends Component {
         .then(response => {
             this.setState({
                 PartyName: response.data.partyName,
-                Logo: response.data.logo,
+                logo: response.data.logo,
+                logoFile: response.data.logoFile,
+                logoSrc: response.data.logoSrc,
                 Color: response.data.color
             });debugger;
         })
@@ -63,28 +67,49 @@ export default class EditParty extends Component {
             PartyName: e.target.value
         });
     }
-    onChangeLogo(e) {
-        this.setState({
-            Logo: e.target.value
-        });
-    }
-
     onChangeColor(e) {
-        debugger;
         this.setState({
             Color: e.target.value
         });
     }
+    onChangeLogo(e) {
+        e.preventDefault();
+        debugger;
+        if(e.target.files && e.target.files[0]){
+            let logoFile = e.target.files[0];
+            let reader = new FileReader();
 
-    onSubmit(e) {
+            reader.onloadend =() => {
+                    this.setState({
+                        logoFile:logoFile,
+                        logoSrc: reader.result
+                    });
+            };
+            reader.readAsDataURL(logoFile);
+        }
+
+        else{
+            this.setState({
+                logoFile:this.state.logoFile,
+                logoSrc: this.state.logoSrc
+            });
+        }
+    }
+
+    onSubmit= async (e) => {
         debugger;
         e.preventDefault();
-        const obj = {
-            PartyName:this.state.PartyName,
-            Logo: this.state.Logo,
-            Color: this.state.Color
-        };
-        axios.put('https://localhost:5001/api/party/'+this.props.user, obj)
+        // const obj = {
+        //     PartyName:this.state.PartyName,
+        //     Logo: this.state.Logo,
+        //     Color: this.state.Color
+        // };
+        const formData = new FormData()
+        formData.append('partyName',this.state.PartyName)
+        formData.append('logo',this.state.logo)
+        formData.append('logoFile',this.state.logoFile)
+        formData.append('color',this.state.Color)
+        await axios.put('https://localhost:5001/api/party/'+this.props.user, formData)
         .then(res => {console.log(res.config.data);});
         debugger;
         this.props.close();
@@ -105,14 +130,6 @@ export default class EditParty extends Component {
                                 label = "partyName"
                                 value = {this.state.PartyName}
                                 onChange = {this.onChangePartyName}
-                                style= {styles.textField}
-                            />
-                            <TextField
-                                name = "logo"
-                                variant = "outlined"
-                                label = "Logo"
-                                value = {this.state.Logo}
-                                onChange = {this.onChangeLogo}
                                 style= {styles.textField}
                             />
                             <TextField
@@ -141,6 +158,22 @@ export default class EditParty extends Component {
                                 </Button>
                             </div>
                         </Grid>
+                        <Grid item xs={6}>
+                                <Card className="root" >
+                                    <CardActionArea>
+                                        <Typography variant="body2" color="textSecondary" component="p">
+                                            Choose The Party Logo
+                                        </Typography>
+
+                                        {this.state.logoSrc ? (
+                                            <img alt={this.state.logoSrc} src={this.state.logoSrc } />
+                                            ) : null}
+                                        <CardContent>
+                                        <input  type="file" accept="image/*"  onChange = {this.onChangeLogo} />
+                                        </CardContent>
+                                    </CardActionArea>
+                                </Card>
+                            </Grid>
                     </Grid>
                 </form>
             </Container>

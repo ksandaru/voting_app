@@ -5,12 +5,13 @@ import PropTypes from "prop-types";
 import { setAlert } from "../../Actions/alert";
 import './Login.css';
 import { login } from "../../Actions/auth";
-import AdminList from "../../pages/admin/AdminList";
+import AdminList from "../../pages/rank1/admin/AdminList";
 import ParticlesEffect from "../layout/ParticlesEffect";
 import history from "../history";
 import { withRouter } from 'react-router-dom';
 import { SubButton } from "../SubButton";
-
+import { AiOutlineHome } from 'react-icons/ai';
+import Logo1 from '../../images/logo1.png';
 const Login = ({ setAlert, login, isAuthenticated, user }) => {
   const [formData, setFromData] = useState({
     name: "",
@@ -53,7 +54,14 @@ const Login = ({ setAlert, login, isAuthenticated, user }) => {
     <div className="LoginPage">  
     <Fragment>
       <section className="login-container">
+      <div className="wrapper">
       <ParticlesEffect />
+    <div className="text">
+    <h1>WELCOME TO ELECTRONIC VOTING WEB PARTNER</h1>
+    <img src={Logo1} alt="logo" width="200px" height="150px"/>
+        
+    </div>
+    </div>
         <h1 className="large text-primary">Sign In</h1>
         <p className="lead">
           <i className="fas fa-user" /> Sign Into Admin Account
@@ -83,7 +91,7 @@ const Login = ({ setAlert, login, isAuthenticated, user }) => {
           <input type="submit" className="btn" value="Login" />
           
         </form>
-        <SubButton to='/home' primary= 'true'  >Go Home</SubButton>
+        <SubButton to='/home' primary= 'true'><AiOutlineHome/><span>Home</span></SubButton>
       </section>
      
     </Fragment>

@@ -54,6 +54,7 @@ export default class PartyList extends Component {
                                     <TableCell>Party Name</TableCell>
                                     <TableCell>Color</TableCell>
                                     <TableCell>Logo</TableCell>
+                                    <TableCell>Logo View</TableCell>
                                     <TableCell>Actions</TableCell>
                                 </TableRow>
                             </TableHead>

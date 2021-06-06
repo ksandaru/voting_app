@@ -32,16 +32,7 @@ const AboutUs = () => {
 					>
 						We Are The Leading Support of Electronic Voting of Future
 					</h1>
-					{/* <p
-						data-aos="fade-left"
-						data-aos-duration="1200"
-						data-aos-offset="350"
-						className="ADetailPara"
-					>
-						Thanks to a safe, convenient and flexible digital ecosystem,
-             to become an unprecedented level of transparency in
-              governance and built broad trust in its digital society.
-					</p> */}
+					
 					<div
 						data-aos="fade-left"
 						data-aos-duration="1200"
@@ -80,16 +71,6 @@ const AboutUs = () => {
 							</ul>
 						</div>
 					</div>
-					{/* <div
-						data-aos="fade-left"
-						data-aos-duration="1200"
-						data-aos-offset="200"
-						className="button6th_container"
-					>
-						<button className="btn6th">
-							<span>Learn more!</span>
-						</button>
-					</div> */}
 				</div>
 				<div
 					data-aos="fade-right"
@@ -98,7 +79,6 @@ const AboutUs = () => {
 					className="AboutUS-RSideContainer col-lg-6 col-md-12"
 				>
 					<div className="row">
-						{/* Single Box Component */}
 						<AboutDetailBox
 							Quantity="4 Students"
 							Detail="Web Development"

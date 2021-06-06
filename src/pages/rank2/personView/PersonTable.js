@@ -2,9 +2,7 @@ import { Button, ButtonGroup, TableCell, TableRow } from '@material-ui/core';
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import axios from 'axios';
-import React, { Component, useState } from 'react'
-import { Link } from 'react-router-dom';
-//import Draggable from 'react-draggable';
+import React from 'react'
 
 import EditPerson from './EditPerson';
 import { Dialog, DialogContent, DialogTitle } from '@material-ui/core'
@@ -35,7 +33,7 @@ export default function PersonTable(props) {
     const DeletePerson = () =>{
         axios.delete('https://localhost:5001/api/person/'+props.obj.nic)
         .then(json => {
-            if(json.statusText=='OK'){
+            if(json.statusText ==='OK'){
                 alert('Record deleted successfully!!');
             }
         })

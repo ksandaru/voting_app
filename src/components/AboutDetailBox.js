@@ -8,7 +8,7 @@ const AboutDetailBox = ({ Quantity, Detail }) => {
 			data-aos-offset="350"
 			className="col-sm-6"
 		>
-			<div className="AUSingleBoxContainer">
+			<div className="AboutSingleBoxContainer">
 				<div
 					data-aos="fade-right"
 					data-aos-duration="1000"
