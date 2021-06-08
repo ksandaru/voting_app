@@ -5,19 +5,28 @@ import React from "react";
     const { bgcolor, completed } = props;
   
     const containerStyles = {
-      height: 18,
+      height: 17,
       width: '100%',
       backgroundColor: "#e0e0de",
-      borderRadius: 10,
+      borderRadius: 8,
       margin: 0,
       Align : 'left'
     }
+
+    // const containerStylesMin = {
+    //   height: 11,
+    //   width: '100%',
+    //   backgroundColor: "#e0e0de",
+    //   borderRadius: 8,
+    //   margin: 0,
+    //   Align : 'left'
+    // }
   
     const fillerStyles = {
       height: '100%',
       width: `${completed}%`,
       backgroundColor: bgcolor,
-      borderRadius: 'inherit',
+      borderRadius: 8,
       textAlign: 'right',
       
     }
@@ -31,12 +40,12 @@ import React from "react";
  
   
     return (
-      <div style={containerStyles}>
+       <div style={containerStyles}>
         <div style={fillerStyles}>
           <span style={labelStyles}>{`${completed}%`}
           </span>
         </div>
-      </div>
+       </div>
     );
   };
   

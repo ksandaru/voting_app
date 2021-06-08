@@ -33,7 +33,7 @@ import CardItem from "./CardItem";
                           src='https://www.propertymatrix.com/wp-content/uploads/2016/07/settings3.png'
                           text='Set up the system privacy and policies '
                           label='SETTING'
-                          path='/addDistricts'
+                          path='/setting'
                         />
                      </ul>
                 </div>

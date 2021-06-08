@@ -1,37 +1,47 @@
-//import "../Result.css";
+import "../Result.css";
 import { Progress } from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
+
 import React, { Component } from 'react'
 import axios from 'axios';
+import {IoIosPeople} from 'react-icons/io';
+import {BsPersonCheckFill} from 'react-icons/bs';
+import {HiReceiptRefund} from 'react-icons/hi';
+import {GrValidate} from 'react-icons/gr';
 
-export default class HeaderBar extends Component {
 
-    constructor(props){
-        super(props)
+class HeaderBar extends Component {
 
-        this.state = {
-            electors: 0,
-        }
-    }
-    componentDidMount(){
 
-        axios.get('https://localhost:5001/api/person/')
-        .then(response=> {
-            //debugger;
-            this.setState({
-                electors: response.data.length,
+        constructor(props){
+            super(props);
+    
+            this.state = {
+                electors: 0,
+            }
+        };
+    
+        componentDidMount(){
+    
+            axios.get('https://localhost:5001/api/person/')
+            .then(response=> {
+                //debugger;
+                this.setState({
+                    electors: response.data.length,
+                });
             });
-        });
-        //debugger;
-    }
+            //debugger;
+        }
 
-    render() {
+     render() {
         return (
+            <div className="container_result">
         <main>
         <div className="main__container">       
             <div className="main__title">
                 <div className="main__greeting">
                     <h1>Vote Result Summary</h1>
+                     <p>Welcome to admin dashboard</p>
                 </div>
             </div>
 
@@ -39,7 +49,7 @@ export default class HeaderBar extends Component {
             <div className="main__cards">
                 <div className="card">
                     <div className="card_inner">
-                        <span className="font-bold text-title"><strong>Electors</strong></span>
+                    <span className="font-bold text-title"><IoIosPeople/><strong>Electors</strong></span>
                         <span className="font-bold text-title">{this.state.electors}</span> 
                     </div>
                     {/* <div>
@@ -58,16 +68,16 @@ export default class HeaderBar extends Component {
 
                 <div className="card">
                     <div className="card_inner">
-                        <span className="font-bold text-title"><strong>Polled</strong></span>
-                        <span className="font-bold text-title">{this.props.obj1.partyTotal}</span>
+                        <span className="font-bold text-title"><BsPersonCheckFill/><strong>Polled</strong></span>
+                        {/* <span className="font-bold text-title">{this.props.obj1.partyTotal}</span> */}
                     </div>
                     <div>
                         <Progress
-                            percent={(this.props.obj1.partyTotal/this.state.electors)*100}
+                            // percent={(this.props.obj1.partyTotal/this.state.electors)*1}
                             status="error"
                             theme={{
                                 error: {
-                                symbol: ((this.props.obj1.partyTotal/this.state.electors)*100).toFixed(2) + '%',
+                                // symbol: (this.props.obj1.partyTotal/this.state.electors)*100 + '%',
                                 color: '#fbc630'
                                 }
                             }}
@@ -77,7 +87,7 @@ export default class HeaderBar extends Component {
 
                 <div className="card">
                     <div className="card_inner">
-                        <span className="font-bold text-title"><strong>Rejected</strong></span>
+                        <span className="font-bold text-title"><HiReceiptRefund/><strong>Rejected</strong></span>
                         <span className="font-bold text-title">0</span>
                     </div>
                     <div>
@@ -96,16 +106,16 @@ export default class HeaderBar extends Component {
 
                 <div className="card">
                     <div className="card_inner">
-                        <span className="font-bold text-title"><strong>Valid</strong></span>
-                        <span className="font-bold text-title">{this.props.obj1.partyTotal}</span>
+                        <span className="font-bold text-title"><GrValidate/><strong>Valid</strong></span>
+                        {/* <span className="font-bold text-title">{this.props.obj1.partyTotal}</span> */}
                     </div>
                     <div>
                         <Progress
-                            percent={(this.props.obj1.partyTotal/this.state.electors)*100}
+                            // percent={(this.props.obj1.partyTotal/this.state.electors)*1}
                             status="error"
                             theme={{
                                 error: {
-                                symbol:((this.props.obj1.partyTotal/this.state.electors)*100).toFixed(2) + '%',
+                                // symbol:(this.props.obj1.partyTotal/this.state.electors)*100 + '%',
                                 color: '#fbc630'
                                 }
                             }}
@@ -115,6 +125,9 @@ export default class HeaderBar extends Component {
             </div> 
         </div>
         </main>
+        </div>
         )
     }
-}
+ }
+
+export default HeaderBar;

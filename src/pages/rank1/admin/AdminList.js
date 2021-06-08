@@ -92,7 +92,7 @@ export default class AdminList extends Component {
                         </Grid>
                     <Grid item xs= {5}>
                         <TableContainer style={{maxHeight: '700px'}} className="tableContainer">
-                            <Table>
+                            <Table stickyHeader aria-label="sticky table">
                             <TableHead style={styles.root}>
                                 <TableRow>
                                     <TableCell>Name</TableCell>

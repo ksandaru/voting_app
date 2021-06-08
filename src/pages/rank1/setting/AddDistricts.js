@@ -2,6 +2,9 @@ import { Button, Container, Grid, TextField, MenuItem, Select, InputLabel, FormC
 import { Alert } from '@material-ui/lab';
 import axios from 'axios';
 import React, { Component } from 'react'
+import DistrictTable from './dataTables/DistrictTable';
+import DivisionTable from './dataTables/DivisionTable';
+import GNDivisionTable from './dataTables/GNDivisionTable';
 
 const styles = {
     root: {
@@ -116,13 +119,14 @@ export default class AddDistricts extends Component {
         debugger;
         axios.post('https://localhost:5001/api/district/', obj)
         .then(json => {debugger;
-            if (json.statusText == 'Created'){
+            if (json.data){
                 debugger;
                 console.log(json.statusText);
                 debugger;
                 this.setState({
                     district: ''
                 });
+                debugger;
                 this.setState({
                     setMessage: true,
                     message: 'District Save Successfully',
@@ -147,7 +151,7 @@ export default class AddDistricts extends Component {
         debugger;
         axios.post('https://localhost:5001/api/division/', obj)
         .then(json => {debugger;
-            if (json.statusText == 'Created'){
+            if (json.data){
                 debugger;
                 console.log(json.statusText);
                 debugger;
@@ -178,7 +182,7 @@ export default class AddDistricts extends Component {
         debugger;
         axios.post('https://localhost:5001/api/gNDivision/', obj)
         .then(json => {debugger;
-            if (json.statusText == 'Created'){
+            if (json.data){
                 debugger;
                 console.log(json.statusText);
                 debugger;
@@ -211,9 +215,10 @@ export default class AddDistricts extends Component {
                 </Snackbar>
                     <form autoComplete="off" noValidate style={styles.root}>
                         {this.props.index === 0 ? 
+                        <div>
+                        <h1>Add Districts</h1>
                         <Grid style={styles.tab}>
                             <Grid item xs={4}>
-                            <h4>Add Districts</h4>
                                 <TextField
                                     name = "districtname"
                                     variant = "outlined"
@@ -228,20 +233,23 @@ export default class AddDistricts extends Component {
                                         color = "primary"
                                         onClick = {this.AddDistrict}
                                         style= {styles.sMargin}
+                                        disabled = {!this.state.district}
                                     >
                                     Submit
                                     </Button>
                                 </div>
                             </Grid>
                             <Grid item xs={8}>
-                                <h4>This is for display and update values</h4>
-                                </Grid>
-                        </Grid> : null}
+                                <DistrictTable/>
+                            </Grid>
+                        </Grid>
+                        </div> : null}
                             
                         {this.props.index === 1 ? 
+                        <div>
+                        <h1>Add Divisions</h1>
                         <Grid style={styles.tab}>
                             <Grid item xs={4}>
-                            <h4>Add Divisions</h4>
                                 <FormControl variant="outlined" style={styles.formControl}>
                                     <InputLabel >District</InputLabel>
                                     <Select
@@ -268,20 +276,23 @@ export default class AddDistricts extends Component {
                                         color = "primary"
                                         onClick = {this.AddDivision}
                                         style= {styles.sMargin}
+                                        disabled= {!this.state.division}
                                     >
                                     Submit
                                     </Button>
                                 </div>
                             </Grid>
                             <Grid item xs={8}>
-                            <h4>This is for display and update values</h4>
+                                <DivisionTable/>
                             </Grid>
-                        </Grid> : null}
+                        </Grid>
+                        </div> : null}
                         
                         {this.props.index === 2 ? 
+                        <div>
+                        <h1>Add Grama Niladhari Divisions</h1>
                         <Grid style={styles.tab}>
                             <Grid item xs={4}>
-                            <h4>Add Grama Niladhari Divisions</h4>
                                 <FormControl variant="outlined" style={styles.formControl}>
                                     <InputLabel >District</InputLabel>
                                     <Select
@@ -320,15 +331,17 @@ export default class AddDistricts extends Component {
                                         color = "primary"
                                         onClick = {this.AddGNDivision}
                                         style= {styles.sMargin}
+                                        disabled = {!this.state.gndivision}
                                     >
                                     Submit
                                     </Button>
                                 </div>
                             </Grid>
                             <Grid item xs={8}>
-                            <h4>This is for display and update values</h4>
+                            <GNDivisionTable/>
                             </Grid>
-                        </Grid> : null}
+                        </Grid>
+                        </div> : null}
                     </form>
             </Container>
         )

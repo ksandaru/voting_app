@@ -1,9 +1,19 @@
-import React, { Component } from 'react'
+
+import React, { Component ,useState} from 'react';
 import axios from 'axios';
-import { Paper, Grid } from '@material-ui/core';
+import './Result.css';
+import './dashboard/Sidebar.css';
+
+import { Container, Paper, Grid, Card, CardHeader, CardContent, Typography, ButtonGroup } from '@material-ui/core';
+import { Doughnut } from 'react-chartjs-2';
+import { Col, Overlay, Row, Button,Jumbotron } from 'react-bootstrap';
+import { FaBullseye } from 'react-icons/fa';
 import Map from './dashboard/Map';
 import HeaderBar from './dashboard/HeaderBar';
 import CanResult from './dashboard/CanResult';
+import Sidebar from "./dashboard/Sidebar";
+import Footer from "../../../components/Footer";
+
 
 
 export default class barChart extends Component {
@@ -30,20 +40,14 @@ export default class barChart extends Component {
             candidateData: [],
             districtCanData: [],
             divisionCanData: [],
+
+            sidebarOpen:'false',
             
         }
     } 
 
     componentDidMount(){
-        debugger;
-        this.partyClass();
-        this.candidateClass();
-    }
-
-    partyClass(){
-
-        //////////////////data load for vote party///////////////////////////////////
-
+        //debugger;
         axios.get('https://localhost:5001/api/vote/')
         .then(response => {
             // debugger;
@@ -115,7 +119,7 @@ export default class barChart extends Component {
         .then(
             axios.get('https://localhost:5001/api/party/')
             .then(res => {
-                // debugger;
+                debugger;
                 //defining arrays
                 const partyRec = res.data;
                 const partyVote = this.state.partyCount;
@@ -141,21 +145,12 @@ export default class barChart extends Component {
                     partyListDist.push({...partyVoteDist[j]});
                     partyListDist[j].Party = [];
                     // debugger;
-                    // for (let i = 0; i < count.length; i++) {
-                    //     debugger;
-                    //     partyListDist[j].Party.push({
-                    //         ...partyRec[i],
-                    //         ...(count.find(item => item.partyID === partyRec[i].partyID))
-                    //     })
-                    //     debugger;
-                    // }
                     for (let i = 0; i < count.length; i++) {
                         // debugger;
                         partyListDist[j].Party.push({
-                            ...count[i],
-                            ...(partyRec.find(item => item.partyID === count[i].partyID))
+                            ...partyRec[i],
+                            ...(count.find(item => item.partyID === partyRec[i].partyID))
                         })
-                        // debugger;
                     }
                 }
                 // debugger;
@@ -168,8 +163,8 @@ export default class barChart extends Component {
                     for (let i = 0; i < count.length; i++) {
                         // debugger;
                         partyListDiv[j].Party.push({
-                            ...count[i],
-                            ...(partyRec.find(item => item.partyID === count[i].partyID))
+                            ...partyRec[i],
+                            ...(count.find(item => item.partyID === partyRec[i].partyID))
                         })
                     }
                 }
@@ -180,7 +175,7 @@ export default class barChart extends Component {
                     districtPartyData: partyListDist,
                     divisionPartyData: partyListDiv,
                 })
-                // debugger;
+                debugger;
             })
             .catch(function (error) {
                 console.log(error);
@@ -190,11 +185,10 @@ export default class barChart extends Component {
             console.log(error);
         });
 
-    }
-
-    candidateClass(){
+        
 
         //////////////////data load for vote candidate///////////////////////////////////
+
 
         debugger;
         axios.get('https://localhost:5001/api/voteCan/')
@@ -290,8 +284,8 @@ export default class barChart extends Component {
                     for (let i = 0; i < count.length; i++) {
                         // debugger;
                         candidateListDist[j].Candidate.push({
-                            ...count[i],
-                            ...(candidateRec.find(item => item.candidateID === count[i].candidateID))
+                            ...candidateRec[i],
+                            ...(count.find(item => item.candidateID === candidateRec[i].candidateID))
                         })
                     }
                 }
@@ -304,8 +298,8 @@ export default class barChart extends Component {
                     for (let i = 0; i < count.length; i++) {
                         // debugger;
                         candidateListDiv[j].Candidate.push({
-                            ...count[i],
-                            ...(candidateRec.find(item => item.candidateID === count[i].candidateID))
+                            ...candidateRec[i],
+                            ...(count.find(item => item.candidateID === candidateRec[i].candidateID))
                         })
                     }
                 }
@@ -334,6 +328,7 @@ export default class barChart extends Component {
         .catch(function (error) {
             console.log(error);
         });
+
     }
 
     openHeader(){
@@ -344,6 +339,7 @@ export default class barChart extends Component {
         //debugger;
         return <Map obj={this.state}/>;
     }
+
     openCandidate(){
         //debugger;
         return <CanResult objct={this.state}/>;
@@ -351,19 +347,68 @@ export default class barChart extends Component {
 
     render() {    
         return (
-            <div>
-                {this.openHeader()}
-                <Paper>
-                    <Grid>
-                        {this.openMap()}
-                    </Grid>
-                </Paper>
-                <Paper>
+
+
+    <div className="home_content">   
+
+     <div class="wrapper">
+        {/* <header class="main-head"> <Navbar  /> </header> */}
+        <nav class="main-nav">
+        <Sidebar sidebarOpen={this.state.sidebarOpen} closeSidebar={this.closeSidebar} />
+        </nav>
+
+       
+        <preHeader class="pre-head">
+            <HeaderBar/>
+        </preHeader>
+
+        <article class="content"  id="PartyResultView">
+             {this.openMap()}
+             
+            <div id="CanResultView">
+                <div className="can__container ">
+
+                    <Jumbotron>
+                        <div className="jumbotron_back">
+                        <div className="can__title">
+                            <div className="can__greeting">
+                                <h1>Candidate Result View</h1>
+                                <p>Click Below For Check Out Candidate Result</p>
+                            </div>
+                        </div>
+                     <p>
+                        <Button className="btton">click here</Button>
+                    </p>
+                    </div>
+                    </Jumbotron>
+
+                </div>
                     <Grid>
                         {this.openCandidate()}
                     </Grid>
-                </Paper>
-            </div>
+                </div>
+
+                {/* <div id="wonSeatView">
+                <main>
+                 <div className="seat__container">       
+                    <div className="main__title">
+                    <div className="main__greeting">
+                  <h1>won seats</h1>
+                     </div>
+                     </div>
+                 </div>
+                </main>
+
+                </div> */}
+                
+        </article>
+       
+        {/* <aside class="side">Sidebar</aside>
+        <div class="ad">Advertising</div> */}
+        <footer class="main-footer"><Footer/></footer>
+       
+    </div>
+</div>
         )
     }
 }

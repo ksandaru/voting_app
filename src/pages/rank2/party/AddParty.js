@@ -259,7 +259,7 @@ debugger;
                                 <Card className="root" >
                                     <CardActionArea>
                                         <Typography variant="body2" color="textSecondary" component="p">
-                                            Choose The Party Logo
+                                            Choose The Party Logo<br/> (PNG 300x168)
                                         </Typography>
 
                                         {this.state.logoSrc ? (

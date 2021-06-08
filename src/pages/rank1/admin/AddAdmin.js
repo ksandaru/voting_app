@@ -237,7 +237,7 @@ export default class AddAdmin extends Component {
     render() {
         return (
             <div className="add_admin_container">
-            <Container maxWidth="sm" >
+            <Container maxWidth="lgsm" >
             <Typography style={styles.heading}>
             <h2>CREATE NEW ADMIN</h2>
             </Typography>

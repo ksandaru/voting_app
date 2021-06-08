@@ -165,10 +165,6 @@ export default class Scanner extends Component {
         .catch(function (error) {
             debugger;
             console.log(error);
-            // this.setState({
-            //     setMessage: true,
-            //     message: 'Not eligible to vote',
-            // });
             alert('Not eligible to vote');
         });
         debugger;
@@ -236,7 +232,7 @@ export default class Scanner extends Component {
                 <Container maxWidth="sm">
                 <Paper style={styles.paper} elevation={3}>
                 <h4>Scan barcode to verify person</h4>
-                <Snackbar open={this.state.setMessage} autoHideDuration={6000} onClose={this.closeMessage} >
+                <Snackbar open={this.state.setMessage} autoHideDuration={4000} onClose={this.closeMessage} >
                     <Alert severity="success" style={{ background: '#4ff398', color: '#060b26' }}>
                         {this.state.message}
                     </Alert>

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -68,13 +68,13 @@ export default function Settings() {
   };
 
   return (
-    <div className="Setting_page">
-        <Fragment>
-    <Container >
+    <div className="settings_page">
+      <>
+    <Container>
         <Paper elevation={3} className={classes.paper}>
             <div className={classes.root}>
-                <Grid container  >
-                <Grid item lg={2} >
+                <Grid container>
+                <Grid item lg={2}>
                     <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" variant="fullWidth" orientation="vertical">
                     <Tab label="Add Districts" {...a11yProps(0)} />
                     <Tab label="Add Divisions" {...a11yProps(1)} />
@@ -82,7 +82,7 @@ export default function Settings() {
                     <Tab label="Assign Parties" {...a11yProps(3)} />
                     </Tabs>
                 </Grid>
-                <Grid item lg={10} >
+                <Grid item lg={10}>
                     <TabPanel value={value} index={0} className={classes.content}>
                         <AddDistricts index={0}/>
                     </TabPanel>
@@ -100,7 +100,7 @@ export default function Settings() {
             </div>
         </Paper>
     </Container>
-    </Fragment>
+    </>
     </div>
   );
 }

@@ -54,7 +54,7 @@ const Login = ({ setAlert, login, isAuthenticated, user }) => {
     <div className="LoginPage">  
     <Fragment>
       <section className="login-container">
-      <div className="wrapper">
+      <div className="login_wrapper">
       <ParticlesEffect />
     <div className="text">
     <h1>WELCOME TO ELECTRONIC VOTING WEB PARTNER</h1>

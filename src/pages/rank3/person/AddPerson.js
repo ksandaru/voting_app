@@ -169,7 +169,7 @@ export default class AddPerson extends Component {
         const obj = {
             NIC: parseInt(this.state.NIC),
             SerialNo: parseInt(this.state.SerialNo),
-            Voted: Boolean(this.state.Voted),
+            Voted: Boolean(this.state.Voted. false),
             GND: parseInt(this.state.GND)
         };
         axios.post('https://localhost:5001/api/person/', obj)

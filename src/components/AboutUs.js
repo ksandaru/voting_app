@@ -15,7 +15,7 @@ const AboutUs = () => {
 		AOS.init();
 	}, []);
 	return (
-		<div id="about" className="AboutPageContainer">
+		<div className="AboutPageContainer">
       
 			<div className="row">
 				<div
@@ -42,7 +42,7 @@ const AboutUs = () => {
 						<div className="col-6">
 							<ul>
 								<li>
-									<GiCheckMark className="AboutListIcon" /> Cryptography
+									<GiCheckMark className="AboutListIcon" /> Role based
 								</li>
 								<li>
 									<GiCheckMark className="AboutListIcon" /> Private Cloud

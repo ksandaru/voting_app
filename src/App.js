@@ -95,18 +95,41 @@ window.addEventListener("storage", () => {
     setIsOpen(!isOpen);
   };
 
-function RoleBasedRoute(router) {
+  function RoleBasedRoute(router) {
     debugger;
-    return (
-      <>
-        {userRole === router.role?
+    switch (router.dynamicLayout) {
+      case true:
+        return (
+          <>
+            {userRole === router.role  ?
+              
+            <DynamicLayout exact path= {router.path} component={router.component} layout="SUB_NAV" />
+    
+            : <Route exact path="*" render={() => {window.location.href="404.html"}} />
+            }
+          </>
+        );
 
-        <Route path= {router.path} component={router.component}/>
-
-        : <Route exact path="*" render={() => {window.location.href="404.html"}} />
-        }
-      </>
-    )
+      case false:
+        return (
+          <>
+            {userRole === router.role  ?
+              
+            <Route exact path= {router.path} component={router.component} />
+    
+            : <Route exact path="*" render={() => {window.location.href="404.html"}} />
+            }
+          </>
+        );
+    
+      default:
+        return (
+          <>
+            <Route exact path="*" render={() => {window.location.href="404.html"}} />
+          </>
+        );
+    }
+    
     
   }
 return (
@@ -124,77 +147,45 @@ return (
          
           {/* role based routing */}
           {/* rank 1 routes */}
-          <RoleBasedRoute path = "/rank1Home" component={Rank1Home} role={"Rank1Admin"} />
-          <RoleBasedRoute path= "/setting" component={Settings} role={"Rank1Admin"}/>
-          <RoleBasedRoute path = "/adminList" component={AdminList} role={"Rank1Admin"} />
-          <RoleBasedRoute path= "/barChart" component={barChart} role={"Rank1Admin"}/>
-          <RoleBasedRoute path= "/addDistricts" component={AddDistricts} role={"Rank1Admin"}/>
+          <RoleBasedRoute path = "/rank1Home" component={Rank1Home} role={"Rank1Admin"} dynamicLayout= {true}/>
+          <RoleBasedRoute path= "/setting" component={Settings} role={"Rank1Admin"} dynamicLayout= {true}/>
+          <RoleBasedRoute path = "/adminList" component={AdminList} role={"Rank1Admin"} dynamicLayout= {true}/>
+          <RoleBasedRoute path= "/barChart" component={barChart} role={"Rank1Admin"} dynamicLayout= {true}/>
+          <RoleBasedRoute path= "/addDistricts" component={AddDistricts} role={"Rank1Admin"} dynamicLayout= {true}/>
 
           {/* rank 2 routes */}
 
-          <RoleBasedRoute path = "/rank2Home" component={Rank2Home} role={"Rank2Admin"} />
-          <RoleBasedRoute path = "/databaseView" component={DatabaseView} role={"Rank2Admin"} />
-          <RoleBasedRoute path = "/addCandidate" component={AddCandidate} role={"Rank2Admin"} />
-          <RoleBasedRoute path= "/addParty" component={AddParty} role={"Rank2Admin"}/>
+          <RoleBasedRoute path = "/rank2Home" component={Rank2Home} role={"Rank2Admin"} dynamicLayout= {true}/>
+          <RoleBasedRoute path = "/databaseView" component={DatabaseView} role={"Rank2Admin"} dynamicLayout= {true}/>
+          <RoleBasedRoute path = "/addCandidate" component={AddCandidate} role={"Rank2Admin"} dynamicLayout= {true}/>
+          <RoleBasedRoute path= "/addParty" component={AddParty} role={"Rank2Admin"} dynamicLayout= {true}/>
           {/* <RoleBasedRoute path= "/operator" component={OperaterLogIn} role={"Rank2Admin"}/>
           <RoleBasedRoute path= "/operatorView" component={OperatorView} role={"Rank2Admin"}/> */}
-          <RoleBasedRoute path= "/settings" component={Settings} role={"Rank2Admin"}/>
-          <RoleBasedRoute path = "/adminList" component={AdminList} role={"Rank2Admin"} />
+          <RoleBasedRoute path= "/settings" component={Settings} role={"Rank2Admin"} dynamicLayout= {true}/>
+          <RoleBasedRoute path = "/adminList" component={AdminList} role={"Rank2Admin"} dynamicLayout= {true}/>
           
           {/* rank 3 routes */}
-          <RoleBasedRoute path = "/rank3Home" component={Rank3Home} role={"Rank3Admin"} />
-          <RoleBasedRoute path= "/addPerson" component={AddPerson} role={"Rank3Admin"}/>
+          <RoleBasedRoute path = "/rank3Home" component={Rank3Home} role={"Rank3Admin"} dynamicLayout= {true} />
+          <RoleBasedRoute path= "/addPerson" component={AddPerson} role={"Rank3Admin"} dynamicLayout= {true}/>
 
           {/* rank 4 routes */}
-          <RoleBasedRoute path = "/rank4Home" component={Rank4Home} role={"Rank4Admin"} />
-          <RoleBasedRoute path= "/scanner" component={Scanner} role={"Rank4Admin"}/>
-          <RoleBasedRoute path= "/voteParty" component={VoteParty} role={"Rank4Admin"}/>
-          <RoleBasedRoute path= "/voteCandidate" component={VoteCandidate} role={"Rank4Admin"}/>
-          <RoleBasedRoute path= "/freezeScreen" component={FreezeScreen} role={"Rank4Admin"}/>
+          <RoleBasedRoute path = "/rank4Home" component={Rank4Home} role={"Rank4Admin"} dynamicLayout= {true}/>
+          <Route path= "/scanner" component={Scanner} />
+          {/* <RoleBasedRoute path= "/voteParty" component={VoteParty} role={"Rank4Admin"}/>
+          <RoleBasedRoute path= "/voteCandidate" component={VoteCandidate} role={"Rank4Admin"}/> */}
+          {/* <RoleBasedRoute path= "/freezeScreen" component={FreezeScreen} role={"Rank4Admin"}/> */}
 
-
-
-
-          <DynamicLayout path = "/rank1Home" component={Rank1Home} layout="SUB_NAV" />
-          <DynamicLayout path = "/rank2Home" component={Rank2Home} layout="SUB_NAV" />
-          <DynamicLayout path = "/rank3Home" component={Rank3Home} layout="SUB_NAV" />
-          <DynamicLayout path = "/rank4Home" component={Rank4Home} layout="SUB_NAV" />
-         
-
+          <Route path= "/voteParty" component={VoteParty}/>
+         < Route path= "/voteCandidate" component={VoteCandidate}/>
+         <Route path= "/freezeScreen" component={FreezeScreen}/>
+        
          
 
           <DynamicLayout exact path="/aboutUs" component={AboutUs} layout="MAIN_NAV"/>
           <DynamicLayout exact path="/" component={Home} layout="MAIN_NAV"/>
           <DynamicLayout exact path="/home" component={Home}/>
-          <DynamicLayout exact path="/adminList" component={AdminList} layout="SUB_NAV"/>
           <DynamicLayout exact path= "/contactUs" component={ContactUs} layout="MAIN_NAV"/>
 
-          
-
-          <Route path = "/adminList" component={AdminList} />
-          <Route path = "/addCandidate" component={AddCandidate} />
-          <Route path = "/adminList" component={AdminList} />
-          
-
-
-          <Route path= "/scanner" component={Scanner}/>
-          <Route path= "/addDistricts" component={AddDistricts}/>
-          
-          <Route path= "/setting" component={Settings}/>
-          <DynamicLayout exact path= "/barChart" component={barChart} layout="SUB_NAV"/>
-
-
-          <Route path= "/voteParty" component={VoteParty}/>
-          <Route path= "/voteCandidate" component={VoteCandidate}/>
-          <Route path= "/freezeScreen" component={FreezeScreen}/>
-          
-      
-
-          {/* <Route path= "/dataEntry" component={DataEntryMenu}/> */}
-          <Route path = "/databaseView" component={DatabaseView} />
-         
-          <Route path= "/addPerson" component={AddPerson}/>
-          <Route path= "/addParty" component={AddParty}/>
           {/* below 404 should be at the bottom of rote paths */}
           <Route exact path="*" render={() => {window.location.href="404.html"}} />
         </Switch>

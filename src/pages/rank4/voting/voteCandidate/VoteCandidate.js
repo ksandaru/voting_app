@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import axios from 'axios';
 import { Grid, Container, Paper,  Button, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
@@ -72,6 +72,7 @@ export default class VoteCandidate extends Component {
         debugger;
         axios.get('https://localhost:5001/api/Rank4Admin/'+ decoded.id)
         .then(res => {
+          debugger;
             this.setState({ 
               personDist: res.data.personDist,
               personDiv: res.data.personDiv,
@@ -80,6 +81,7 @@ export default class VoteCandidate extends Component {
             const distId =  this.state.personDist;
             axios.get('https://localhost:5001/api/candidate/GetByParty/'+ this.props.history.location.state.party + '/'+ distId)
             .then(response => {
+              debugger;
                 this.setState({ 
                   business: response.data
                 });
@@ -168,6 +170,8 @@ export default class VoteCandidate extends Component {
     
       render() {
         return (
+          <div className="votecan_background">
+        <Fragment>
         <Container style={styles.root} >
              <Paper style={styles.paper} elevation={3} >
                 <Snackbar open={this.state.setMessage} autoHideDuration={3000} onClose={this.closeMessage}>
@@ -177,6 +181,7 @@ export default class VoteCandidate extends Component {
                 </Snackbar>
                 <Grid  spacing={4} >
                 {this.state.business.map((tile, i) => (
+                  <div className="votecan_items">
                         <Button 
                           key={i}
                           onClick={() => this.nextVote(tile)}
@@ -191,6 +196,7 @@ export default class VoteCandidate extends Component {
                             </div>
                           </div>
                         </Button>
+                        </div>
                     ))}
                 </Grid>
                 <Grid>
@@ -207,6 +213,8 @@ export default class VoteCandidate extends Component {
                 </Grid>
             </Paper>
         </Container>
+        </Fragment>
+        </div>
         )
       }
     }

@@ -496,299 +496,11 @@ p1{
     overflow: hidden;
 } */
 
-.paper {
-    /* width: 50%; */
-    height: 800px;
-    margin: 30px 10px 10px 10px;
-    padding: 20px;
-}
-
-.parent {
-    position: relative;
-    height: 1000;
-    width: 1000;
-}
-
-.mapDist {
-    width: 600px;
-    height: 800px;
-    margin: auto;
-    /* transform: scale(0.6); */
-    stroke: #ffffff; 
-    stroke-linecap: round; 
-    stroke-width: 2;
-}
-
-.B{
-    fill: #cc1100;
-    stroke: snow;
-    stroke-width: 1px;
-    transition: fill 0.3s;
-    
-}
-
-.B:hover {
-    fill: orange;
-    cursor: pointer;
-}
-
-.mapDiv {
-    width: 600px;
-    height: 800px;
-    margin: auto;
-    /* transform: scale(0.6); */
-    stroke: #ffffff; 
-    stroke-linecap: round; 
-    stroke-width: 2;
-}
-
-.A{
-    fill: #cc1100;
-    opacity: 0.6;
-    stroke: white;
-    stroke-width: 1px;
-    transition: fill 0.3s;
-    
-}
-
-.A:hover{
-    fill: orange;
-    cursor: pointer;
-    /* stroke-width: 2px;
-    -webkit-transform:scale(1.01); */
-}
-
-.overlay{
-    position: absolute;
-    display: block;
-    visibility: hidden;
-    /* transition: cubic-bezier(0.98, 0.06, 0.14, 0.99); */
-    width: 680px;
-    height: 750px;
-    top: 80px;
-    left: 30px;
-    right: 0;
-    bottom: 0;
-    background-color: #ffffffc9;
-}
-
-.district{
-    transform: scale(4.5);
-    display: block;
-    margin-top: 300px;
-    margin-left: 300px;
-    width: 120px;
-    height: 120px;
-    animation: 750ms 1 forwards disAnime;
-    /* animation-play-state: running; */
-}
-.district path:hover{
-    fill: orange;
-    cursor: pointer;
-}
-.district g:hover{
-    fill: orange;
-    cursor: pointer;
-}
-
-/* .districtAnime{
-    animation: 1s 1 forwards disAnime;
-} */
-@keyframes disAnime {
-    0%   {opacity: 0; transform: scale(0.5);}
-    100% {opacity: 1;transform: scale(4.5);}
-  }
 
 
-/* @keyframes disAnime {
-    0%   {background: red; left: 0px; top: 0px;}
-    25%  {background: yellow; left: 200px; top: 0px;}
-    50%  {background: blue; left: 200px; top: 200px;}
-    75%  {background: green; left: 0px; top: 200px;}
-    100% {background: red; left: 0px; top: 0px;}
-  } */
 
-  /* End Map CSS */
 
-  /* Start HeaderBar CSS */
-
-  main {
-    background: #9869a3;
-    grid-area: main;
-    overflow-y: auto;
-  }
   
-  .main__container {
-    padding: 20px 35px;
-  }
-  
-  .main__title {
-    display: flex;
-    align-items: center;
-  }
-  
-  .main__title > img {
-    max-height: 100px;
-    object-fit: contain;
-    margin-right: 20px;
-  }
-  
-  .main__greeting > h1 {
-    font-size: 24px;
-    color: #4d0741;
-    margin-bottom: 5px;
-  }
-  
-  .main__greeting > p {
-    font-size: 14px;
-    font-weight: 700;
-    color: #a5aaad;
-  }
-  
-  .main__cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 30px;
-    margin: 20px 0;
-  }
-  
-  .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 110px;
-    padding: 25px;
-    border-radius: 5px;
-    background: #ffffff;
-    box-shadow: 5px 5px 13px #555151, -5px -5px 13px #7a6e6e;
-  }
-  
-  .card_inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .card_inner > span {
-    font-size: 20px;
-  }
-  /* End HeaderBar CSS */
-
-  /* Start ChartBar CSS */
-  .charts {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-top: 50px;
-  }
-  
-  .charts__left {
-    padding: 25px;
-    border-radius: 10px;
-    background: #ffffff;
-    box-shadow: 5px 5px 13px #555151, -5px -5px 13px #7a6e6e;
-  }
-  
-  .charts__left__title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .charts__left__title > div > h1 {
-    font-size: 24px;
-    color: #2e4a66;
-    margin-bottom: 5px;
-  }
-  
-  .charts__left__title > div > p {
-    font-size: 14px;
-    font-weight: 700;
-    color: #a5aaad;
-  }
-  
-  .charts__left__title > i {
-    color: #ffffff;
-    font-size: 20px;
-    background: #cf4fcf;
-    border-radius: 200px 0px 200px 200px;
-    -moz-border-radius: 200px 0px 200px 200px;
-    -webkit-border-radius: 200px 0px 200px 200px;
-    border: 0px solid #000000;
-    padding: 15px;
-  }
-  
-  .charts__right {
-    padding: 25px;
-    border-radius: 5px;
-    background: #ffffff;
-    box-shadow: 5px 5px 13px #555151, -5px -5px 13px #7a6e6e;
-  }
-  
-  .hr.new {
-    border: 1px solid;
-  }
-  
-  .table_style{
-    border: 1px solid black;
-  }
-  
-  .charts__right__title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .charts__right__title > div > h1 {
-    font-size: 24px;
-    color: #2e4a66;
-    margin-bottom: 5px;
-  }
-  
-  .charts__right__title > div > p {
-    font-size: 14px;
-    font-weight: 700;
-    color: #04273d;
-  }
-  
-  .charts__right__title > i {
-    color: #ffffff;
-    font-size: 20px;
-    background: #39447a;
-    border-radius: 200px 0px 200px 200px;
-    -moz-border-radius: 200px 0px 200px 200px;
-    -webkit-border-radius: 200px 0px 200px 200px;
-    border: 0px solid #000000;
-    padding: 15px;
-  }
-  
-  .charts__right__cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-top: 30px;
-  }
-  
-  
-  
-  @media only screen and (max-width: 855px) {
-    .main__cards {
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-bottom: 0;
-    }
-  
-    .charts {
-      grid-template-columns: 1fr;
-      margin-top: 30px;
-    }
-  }
-
-  .rowScroll{
-    position: absolute;
-    overflow-y:scroll;
-    height: 350px;
-  }
   /* End ChartBar CSS */
 //------------------------
 //----card items for rank homes----
@@ -818,7 +530,7 @@ p1{
     align-items: center;
     max-width: 1120px;
     width: 90%;
-    margin: 30px 200px;
+    margin: 30px 50px;
   }
   
   .cards__wrapper {
@@ -1185,6 +897,41 @@ p1{
 	border-radius: 0.5rem;
 	border: 2px solid rgb(242, 242, 102);
   }
+  //-------settings page background----------
+  .settings_page{
+  background: url('../assets/pattern-9.jpg');
+  height: 100vh;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+  .table_head{
+    background-color: snow;
+  }
+  //---------------vote party and candid back------------
+  .voteparty_background ,.votecan_background{
+    background: url('../assets/pattern-13.jpg');
+  height: 100vh;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+  .voteparty_items, .votecan_items{
+    padding-top:20px;
+    box-shadow:1rem 1rem 1rem 1rem rgb(148 148 34 / 20%);
+  -webkit-box-shadow:1rem 1rem 1rem 1rem rgb(148 148 34 / 10%);
+  -webkit-transition: 0.5s;
+	transition: 0.5s;
+  }
+ 
+  .vote_btton_popup:hover {
+    box-shadow:1rem 1rem 1rem 1rem rgb(148 148 34 / 20%);
+  -webkit-box-shadow:1rem 1rem 1rem 1rem rgb(148 148 34 / 10%);
+	-webkit-transform: translateY(5px);
+	transform: translateY(5px);
+}
 `;
 
 export  default GlobalStyle;

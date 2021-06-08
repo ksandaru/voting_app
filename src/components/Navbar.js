@@ -139,7 +139,9 @@ switch (userRole) {
 }
     const authLinks = (
         <Fragment>
-             <AppLogo to = '/home' src={Logo1} alt="logo" ></AppLogo>
+             <a href="/home">
+          <AppLogo src={Logo1} alt="logo" />
+        </a>
           <MenuBars onClick={toggle} />
           <NavMenu>
           < NavMenuLinks to={path} >
@@ -164,7 +166,10 @@ switch (userRole) {
     
       const guestLinks = (
         <Fragment>
-          <AppLogo to = '/' src={Logo1} alt="logo" ></AppLogo>
+          <a href="/home">
+          <AppLogo src={Logo1} alt="logo" />
+        </a>
+          {/* <AppLogo to= '/' src={Logo1} alt="logo" ></AppLogo> */}
           <MenuBars onClick={toggle} />
           <NavMenu>          
             <NavMenuLinks to='/home' >

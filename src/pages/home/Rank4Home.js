@@ -22,6 +22,12 @@ function Rank4Home() {
                             label='START VOTING'
                             path='/polCenter'
                         />
+                        <CardItem
+                            src='https://lucascountyelections.iowa.gov/global/images/how_do_i_vote.png'
+                            text='click here to step in the polling center'
+                            label='SCANNER'
+                            path='/scanner'
+                        />
                        
                      </ul>
                 </div>

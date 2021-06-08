@@ -3,6 +3,7 @@ import axios from 'axios';
 import jwt_decode from "jwt-decode"
 import { Grid, Container, Paper,  Button, Snackbar } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
+import { Fragment } from 'react';
 
 
 const styles = {
@@ -15,6 +16,7 @@ const styles = {
       },
       card: {
         display: 'contents',
+        
       },
       text: {
         alignSelf: 'center',
@@ -125,6 +127,8 @@ debugger;
 
   render() {
     return (
+      <div className="voteparty_background">
+        <Fragment>
       <Container style={styles.root}>
             <Paper style={styles.paper} elevation={3} >
               {/* <Grid  spacing={4}> */}
@@ -135,6 +139,7 @@ debugger;
               </Snackbar>
               <Grid>
               {this.state.business.map((tile, i) => (
+                      <div className="voteparty_items">
                       <Button 
                         key={i}
                         onClick={() => this.selectParty(tile)}
@@ -152,10 +157,13 @@ debugger;
                           </div>
                         </div>
                       </Button>
+                      </div>
                   ))}
               </Grid>
           </Paper>
       </Container>
+      </Fragment>
+      </div>
     )
   }
 }

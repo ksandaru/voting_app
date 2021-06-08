@@ -23,7 +23,7 @@ const DynamicLayout = props => {
           <div>
             {/* <MainNavigation /> */}
             {/* <Header /> */}
-            <Navbar/>
+            <Navbar />
             {actualRouteComponent}
             <Footer/>
           </div>
